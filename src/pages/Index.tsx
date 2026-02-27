@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Building2, GraduationCap, Briefcase, PartyPopper, MapPin, Calendar, Users } from "lucide-react";
+import { Search, Building2, GraduationCap, Briefcase, PartyPopper, MapPin, Calendar, Users, Flower2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,7 @@ const typeFilters: { type: InstitutionType | "all"; label: string; icon: React.E
   { type: "university", label: "Universities", icon: GraduationCap },
   { type: "coworking", label: "Coworking", icon: Briefcase },
   { type: "event", label: "Events", icon: PartyPopper },
+  { type: "garden", label: "Gardens", icon: Flower2 },
 ];
 
 const Index = () => {
