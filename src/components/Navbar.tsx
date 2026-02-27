@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl text-primary">
           <Building2 className="h-6 w-6" />
-          <span>SpaceBook</span>
+          <span>ReserveHub</span>
         </Link>
 
         {/* Desktop nav */}

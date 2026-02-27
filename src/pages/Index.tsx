@@ -35,10 +35,10 @@ const Index = () => {
         <div className="hero-overlay absolute inset-0" />
         <div className="relative z-10 container text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground mb-4 animate-fade-in">
-            Book Any Space, Anywhere
+            Book Any Space in Debrecen
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            Find and reserve meeting rooms, lecture halls, coworking desks, and event venues across top institutions.
+            Find and reserve meeting rooms, lecture halls, coworking desks, and event venues across institutions in Debrecen.
           </p>
 
           {/* Search Bar */}
@@ -51,7 +51,7 @@ const Index = () => {
               <div className="flex-1 flex items-center gap-2 bg-secondary rounded-lg px-3">
                 <MapPin className="h-4 w-4 text-muted-foreground shrink-0" />
                 <Input
-                  placeholder="City or institution name..."
+                  placeholder="Search institutions in Debrecen..."
                   className="border-0 bg-transparent shadow-none focus-visible:ring-0"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
@@ -116,10 +116,10 @@ const Index = () => {
       <section className="bg-primary text-primary-foreground py-16">
         <div className="container grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: "500+", label: "Spaces" },
-            { value: "120+", label: "Institutions" },
-            { value: "25K+", label: "Bookings" },
-            { value: "50+", label: "Cities" },
+            { value: "50+", label: "Spaces" },
+            { value: "15+", label: "Institutions" },
+            { value: "2K+", label: "Bookings" },
+            { value: "1", label: "City — Debrecen" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-3xl md:text-4xl font-extrabold mb-1">{s.value}</div>
@@ -132,7 +132,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t py-8">
         <div className="container text-center text-sm text-muted-foreground">
-          © 2026 SpaceBook. All rights reserved. — UI Prototype
+          © 2026 ReserveHub. All rights reserved. — Thesis UI Prototype
         </div>
       </footer>
     </div>
