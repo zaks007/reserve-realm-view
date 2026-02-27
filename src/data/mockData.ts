@@ -167,6 +167,20 @@ export const institutions: Institution[] = [
       { id: "b13", name: "IdeaLab Hub", spaces: [spaces[3], spaces[4], spaces[9]] },
     ],
   },
+  {
+    id: "inst-7",
+    name: "Debreceni Közösségi Kert",
+    type: "garden",
+    city: "Debrecen",
+    description: "Community garden in Debrecen where residents can rent garden plots for growing vegetables, herbs, and flowers. Includes shared tools and a greenhouse.",
+    image: "https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=600",
+    rating: 4.8,
+    buildings: [
+      { id: "b14", name: "Section A — Vegetable Plots", spaces: [gardenPlots[0], gardenPlots[2], gardenPlots[3]] },
+      { id: "b15", name: "Section B — Herb & Flower Gardens", spaces: [gardenPlots[1], gardenPlots[4]] },
+      { id: "b16", name: "Greenhouse & Facilities", spaces: [gardenPlots[5]] },
+    ],
+  },
 ];
 
 export const bookings: Booking[] = [
