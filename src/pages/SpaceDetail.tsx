@@ -62,7 +62,7 @@ const SpaceDetail = () => {
             <div className="bg-card border rounded-lg p-4 text-center">
               <DollarSign className="h-5 w-5 mx-auto mb-2 text-primary" />
               <p className="text-sm text-muted-foreground">Price/Hour</p>
-              <p className="font-bold text-lg">${space.pricePerHour}</p>
+              <p className="font-bold text-lg">{space.pricePerHour.toLocaleString()} HUF</p>
             </div>
             <div className="bg-card border rounded-lg p-4 text-center">
               <Clock className="h-5 w-5 mx-auto mb-2 text-primary" />
@@ -89,7 +89,7 @@ const SpaceDetail = () => {
           <div className="bg-card border rounded-xl p-6 sticky top-24">
             <h3 className="text-xl font-bold mb-1">Reserve This Space</h3>
             <p className="text-sm text-muted-foreground mb-6">
-              ${space.pricePerHour}/hour · {institution.name}
+              {space.pricePerHour.toLocaleString()} HUF/hour · {institution.name}
             </p>
             <form onSubmit={handleReserve} className="space-y-4">
               <div>
