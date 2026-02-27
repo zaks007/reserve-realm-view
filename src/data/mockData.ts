@@ -1,4 +1,4 @@
-export type InstitutionType = "hotel" | "university" | "coworking" | "event";
+export type InstitutionType = "hotel" | "university" | "coworking" | "event" | "garden";
 
 export interface Institution {
   id: string;
@@ -45,6 +45,15 @@ export interface Booking {
   status: "confirmed" | "pending" | "cancelled";
   capacity: number;
 }
+
+const gardenPlots: Space[] = [
+  { id: "g1", name: "Plot A1 — Raised Bed", capacity: 1, image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600", features: ["Raised Bed", "Water Access", "Tool Shed", "Composting"], pricePerHour: 500, available: true },
+  { id: "g2", name: "Plot A2 — Herb Garden", capacity: 1, image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600", features: ["Herb Section", "Water Access", "Sunlit"], pricePerHour: 400, available: true },
+  { id: "g3", name: "Plot B1 — Large Family Plot", capacity: 4, image: "https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=600", features: ["Large Area", "Water Access", "Tool Shed", "Greenhouse Access", "Composting"], pricePerHour: 800, available: true },
+  { id: "g4", name: "Plot B2 — Starter Plot", capacity: 1, image: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=600", features: ["Small Area", "Water Access", "Beginner Friendly"], pricePerHour: 300, available: true },
+  { id: "g5", name: "Plot C1 — Flower Garden", capacity: 2, image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600", features: ["Flower Beds", "Water Access", "Decorative Area"], pricePerHour: 450, available: false },
+  { id: "g6", name: "Community Greenhouse", capacity: 6, image: "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?w=600", features: ["Heated", "Water System", "Seedling Trays", "Year-Round"], pricePerHour: 1200, available: true },
+];
 
 const spaces: Space[] = [
   { id: "s1", name: "Conference Room A", capacity: 20, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600", features: ["Projector", "WiFi", "Whiteboard", "AC", "Video Conferencing"], pricePerHour: 12000, available: true },
@@ -193,6 +202,7 @@ export const typeLabelMap: Record<InstitutionType, string> = {
   university: "University",
   coworking: "Coworking Space",
   event: "Event Venue",
+  garden: "Community Garden",
 };
 
 export const typeBadgeClass: Record<InstitutionType, string> = {
@@ -200,4 +210,5 @@ export const typeBadgeClass: Record<InstitutionType, string> = {
   university: "badge-university",
   coworking: "badge-coworking",
   event: "badge-event",
+  garden: "badge-garden",
 };
