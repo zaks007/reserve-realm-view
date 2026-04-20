@@ -1,4 +1,4 @@
-export type InstitutionType = "hotel" | "university" | "coworking" | "event" | "garden";
+export type InstitutionType = "hotel" | "university" | "coworking" | "event" | "garden" | "airbnb";
 
 export interface Institution {
   id: string;
@@ -78,8 +78,8 @@ export const institutions: Institution[] = [
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600",
     rating: 4.6,
     buildings: [
-      { id: "b1", name: "Main Building", spaces: [spaces[0], spaces[7]] },
-      { id: "b2", name: "Conference Wing", spaces: [spaces[5], spaces[1]] },
+      { id: "b1", name: "Rooms", spaces: [hotelRooms[0], hotelRooms[1], hotelRooms[2], hotelRooms[3], hotelRooms[4]] },
+      { id: "b2", name: "Flats & Suites", spaces: [hotelFlats[0], hotelFlats[1], hotelFlats[3]] },
     ],
   },
   {
@@ -151,8 +151,8 @@ export const institutions: Institution[] = [
     image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600",
     rating: 4.4,
     buildings: [
-      { id: "b11", name: "Wellness Wing", spaces: [spaces[7], spaces[1]] },
-      { id: "b12", name: "Event Center", spaces: [spaces[5], spaces[0]] },
+      { id: "b11", name: "Rooms", spaces: [hotelRooms[1], hotelRooms[3], hotelRooms[2]] },
+      { id: "b12", name: "Flats & Apartments", spaces: [hotelFlats[1], hotelFlats[2], hotelFlats[3]] },
     ],
   },
   {
@@ -179,6 +179,20 @@ export const institutions: Institution[] = [
       { id: "b14", name: "Section A — Vegetable Plots", spaces: [gardenPlots[0], gardenPlots[2], gardenPlots[3]] },
       { id: "b15", name: "Section B — Herb & Flower Gardens", spaces: [gardenPlots[1], gardenPlots[4]] },
       { id: "b16", name: "Greenhouse & Facilities", spaces: [gardenPlots[5]] },
+    ],
+  },
+  {
+    id: "inst-8",
+    name: "Debrecen Stays — Airbnb Collection",
+    type: "airbnb",
+    city: "Debrecen",
+    description: "Curated collection of Airbnb listings across Debrecen — from cozy lofts in the city center to family homes near the Great Forest.",
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600",
+    rating: 4.7,
+    buildings: [
+      { id: "b17", name: "Downtown Listings", spaces: [airbnbListings[0], airbnbListings[1], airbnbListings[5]] },
+      { id: "b18", name: "Near University", spaces: [airbnbListings[2], airbnbListings[4]] },
+      { id: "b19", name: "Family Homes", spaces: [airbnbListings[3]] },
     ],
   },
 ];
@@ -217,6 +231,7 @@ export const typeLabelMap: Record<InstitutionType, string> = {
   coworking: "Coworking Space",
   event: "Event Venue",
   garden: "Community Garden",
+  airbnb: "Airbnb",
 };
 
 export const typeBadgeClass: Record<InstitutionType, string> = {
@@ -225,4 +240,5 @@ export const typeBadgeClass: Record<InstitutionType, string> = {
   coworking: "badge-coworking",
   event: "badge-event",
   garden: "badge-garden",
+  airbnb: "badge-airbnb",
 };
