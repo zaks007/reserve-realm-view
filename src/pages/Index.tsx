@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Building2, GraduationCap, Briefcase, PartyPopper, MapPin, Calendar, Users, Flower2 } from "lucide-react";
+import { Search, Building2, GraduationCap, Briefcase, PartyPopper, MapPin, Calendar, Users, Flower2, Home } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 const typeFilters: { type: InstitutionType | "all"; label: string; icon: React.ElementType }[] = [
   { type: "all", label: "All", icon: Search },
   { type: "hotel", label: "Hotels", icon: Building2 },
+  { type: "airbnb", label: "Airbnbs", icon: Home },
   { type: "university", label: "Universities", icon: GraduationCap },
   { type: "coworking", label: "Coworking", icon: Briefcase },
   { type: "event", label: "Events", icon: PartyPopper },

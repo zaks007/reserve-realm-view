@@ -131,6 +131,9 @@
   .badge-garden {
     @apply bg-green-700/15 text-green-800 dark:text-green-400;
   }
+  .badge-airbnb {
+    @apply bg-rose-500/15 text-rose-600 dark:text-rose-400;
+  }
 
   .status-confirmed {
     @apply bg-emerald-500/10 text-emerald-600;
