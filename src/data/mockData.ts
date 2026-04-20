@@ -99,7 +99,7 @@ export const institutions: Institution[] = [
     type: "hotel",
     city: "Debrecen",
     description: "Modern 4-star hotel near the Great Forest with conference and event facilities.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Hunyadi_J%C3%A1nos_Stra%C3%9Fe_1-3%2C_2022_Debrecen.jpg/960px-Hunyadi_J%C3%A1nos_Stra%C3%9Fe_1-3%2C_2022_Debrecen.jpg",
     rating: 4.6,
     buildings: [
       { id: "b1", name: "Rooms", spaces: [hotelRooms[0], hotelRooms[1], hotelRooms[2], hotelRooms[3], hotelRooms[4]] },
@@ -112,7 +112,7 @@ export const institutions: Institution[] = [
     type: "university",
     city: "Debrecen",
     description: "One of Hungary's largest universities with multiple campuses across the city.",
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?w=600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/7/73/DebrecenDSCN3583.JPG",
     rating: 4.5,
     campuses: [
       {
@@ -159,7 +159,7 @@ export const institutions: Institution[] = [
     type: "event",
     city: "Debrecen",
     description: "Debrecen's premier event and conference venue for large-scale gatherings.",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/K%C3%B6lcsey_K%C3%B6zpont_Sz%C5%91demeteren_2024-ben.jpg/960px-K%C3%B6lcsey_K%C3%B6zpont_Sz%C5%91demeteren_2024-ben.jpg",
     rating: 4.9,
     buildings: [
       { id: "b9", name: "Main Hall", spaces: [spaces[5], spaces[0], spaces[6]] },
@@ -172,7 +172,7 @@ export const institutions: Institution[] = [
     type: "hotel",
     city: "Debrecen",
     description: "Spa and wellness hotel in the Great Forest with meeting rooms and event spaces.",
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Debreceni_Nagyerd%C5%91%2C_sportk%C3%B6zpont_a_magasb%C3%B3l.jpg",
     rating: 4.4,
     buildings: [
       { id: "b11", name: "Rooms", spaces: [hotelRooms[1], hotelRooms[3], hotelRooms[2]] },
