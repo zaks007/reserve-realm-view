@@ -55,6 +55,30 @@ const gardenPlots: Space[] = [
   { id: "g6", name: "Community Greenhouse", capacity: 6, image: "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?w=600", features: ["Heated", "Water System", "Seedling Trays", "Year-Round"], pricePerHour: 1200, available: true },
 ];
 
+const hotelRooms: Space[] = [
+  { id: "hr1", name: "Standard Double Room", capacity: 2, image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600", features: ["Queen Bed", "WiFi", "AC", "Private Bathroom", "TV"], pricePerHour: 25000, available: true },
+  { id: "hr2", name: "Deluxe King Room", capacity: 2, image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600", features: ["King Bed", "WiFi", "AC", "Balcony", "Mini Bar", "TV"], pricePerHour: 38000, available: true },
+  { id: "hr3", name: "Twin Room", capacity: 2, image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600", features: ["Two Single Beds", "WiFi", "AC", "TV"], pricePerHour: 22000, available: true },
+  { id: "hr4", name: "Family Room", capacity: 4, image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600", features: ["2 Queen Beds", "WiFi", "AC", "TV", "Extra Space"], pricePerHour: 45000, available: true },
+  { id: "hr5", name: "Junior Suite", capacity: 2, image: "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=600", features: ["King Bed", "Lounge Area", "WiFi", "AC", "Mini Bar"], pricePerHour: 55000, available: false },
+];
+
+const hotelFlats: Space[] = [
+  { id: "hf1", name: "Studio Apartment", capacity: 2, image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600", features: ["Kitchenette", "WiFi", "AC", "Workspace", "Smart TV"], pricePerHour: 32000, available: true },
+  { id: "hf2", name: "One-Bedroom Flat", capacity: 3, image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600", features: ["Full Kitchen", "Living Room", "WiFi", "AC", "Washer"], pricePerHour: 48000, available: true },
+  { id: "hf3", name: "Two-Bedroom Flat", capacity: 5, image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600", features: ["Full Kitchen", "Living Room", "2 Bathrooms", "WiFi", "Washer"], pricePerHour: 72000, available: true },
+  { id: "hf4", name: "Penthouse Suite", capacity: 4, image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600", features: ["Terrace", "Full Kitchen", "Jacuzzi", "WiFi", "Panoramic View"], pricePerHour: 120000, available: true },
+];
+
+const airbnbListings: Space[] = [
+  { id: "ab1", name: "Cozy Loft near Nagytemplom", capacity: 2, image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600", features: ["WiFi", "Kitchen", "Self Check-in", "City View"], pricePerHour: 18000, available: true },
+  { id: "ab2", name: "Modern Apartment in Downtown", capacity: 4, image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600", features: ["WiFi", "Full Kitchen", "Washer", "Workspace", "Netflix"], pricePerHour: 28000, available: true },
+  { id: "ab3", name: "Charming Studio by the Park", capacity: 2, image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=600", features: ["WiFi", "Kitchenette", "Garden Access", "Parking"], pricePerHour: 16000, available: true },
+  { id: "ab4", name: "Family House with Garden", capacity: 6, image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600", features: ["WiFi", "Full Kitchen", "Garden", "BBQ", "Parking", "Pet Friendly"], pricePerHour: 45000, available: true },
+  { id: "ab5", name: "Stylish Flat near University", capacity: 3, image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600", features: ["WiFi", "Kitchen", "Workspace", "Washer"], pricePerHour: 22000, available: false },
+  { id: "ab6", name: "Luxury Penthouse Downtown", capacity: 4, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", features: ["Rooftop Terrace", "Full Kitchen", "WiFi", "Premium View"], pricePerHour: 65000, available: true },
+];
+
 const spaces: Space[] = [
   { id: "s1", name: "Conference Room A", capacity: 20, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600", features: ["Projector", "WiFi", "Whiteboard", "AC", "Video Conferencing"], pricePerHour: 12000, available: true },
   { id: "s2", name: "Meeting Room B", capacity: 8, image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600", features: ["WiFi", "Whiteboard", "AC"], pricePerHour: 6000, available: true },
