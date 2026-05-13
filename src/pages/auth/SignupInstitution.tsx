@@ -9,7 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { typeLabelMap, InstitutionType } from "@/data/mockData";
 import { toast } from "@/hooks/use-toast";
 
-const types: InstitutionType[] = ["university", "hotel", "event", "sports"];
+const types: InstitutionType[] = ["university", "hotel", "sports", "garden", "airbnb"];
 
 const SignupInstitution = () => {
   const { signupInstitution } = useAuth();
