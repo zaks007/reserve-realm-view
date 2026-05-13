@@ -1,4 +1,4 @@
-export type InstitutionType = "hotel" | "university" | "coworking" | "event" | "garden" | "airbnb";
+export type InstitutionType = "hotel" | "university" | "event" | "sports";
 
 export interface Institution {
   id: string;
@@ -46,15 +46,6 @@ export interface Booking {
   capacity: number;
 }
 
-const gardenPlots: Space[] = [
-  { id: "g1", name: "Plot A1 — Raised Bed", capacity: 1, image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600", features: ["Raised Bed", "Water Access", "Tool Shed", "Composting"], pricePerHour: 500, available: true },
-  { id: "g2", name: "Plot A2 — Herb Garden", capacity: 1, image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600", features: ["Herb Section", "Water Access", "Sunlit"], pricePerHour: 400, available: true },
-  { id: "g3", name: "Plot B1 — Large Family Plot", capacity: 4, image: "https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=600", features: ["Large Area", "Water Access", "Tool Shed", "Greenhouse Access", "Composting"], pricePerHour: 800, available: true },
-  { id: "g4", name: "Plot B2 — Starter Plot", capacity: 1, image: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=600", features: ["Small Area", "Water Access", "Beginner Friendly"], pricePerHour: 300, available: true },
-  { id: "g5", name: "Plot C1 — Flower Garden", capacity: 2, image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600", features: ["Flower Beds", "Water Access", "Decorative Area"], pricePerHour: 450, available: false },
-  { id: "g6", name: "Community Greenhouse", capacity: 6, image: "https://images.unsplash.com/photo-1585255318859-f5c15f4cffe9?w=600", features: ["Heated", "Water System", "Seedling Trays", "Year-Round"], pricePerHour: 1200, available: true },
-];
-
 const hotelRooms: Space[] = [
   { id: "hr1", name: "Standard Double Room", capacity: 2, image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600", features: ["Queen Bed", "WiFi", "AC", "Private Bathroom", "TV"], pricePerHour: 25000, available: true },
   { id: "hr2", name: "Deluxe King Room", capacity: 2, image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600", features: ["King Bed", "WiFi", "AC", "Balcony", "Mini Bar", "TV"], pricePerHour: 38000, available: true },
@@ -70,26 +61,25 @@ const hotelFlats: Space[] = [
   { id: "hf4", name: "Penthouse Suite", capacity: 4, image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600", features: ["Terrace", "Full Kitchen", "Jacuzzi", "WiFi", "Panoramic View"], pricePerHour: 120000, available: true },
 ];
 
-const airbnbListings: Space[] = [
-  { id: "ab1", name: "Cozy Loft near Nagytemplom", capacity: 2, image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600", features: ["WiFi", "Kitchen", "Self Check-in", "City View"], pricePerHour: 18000, available: true },
-  { id: "ab2", name: "Modern Apartment in Downtown", capacity: 4, image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600", features: ["WiFi", "Full Kitchen", "Washer", "Workspace", "Netflix"], pricePerHour: 28000, available: true },
-  { id: "ab3", name: "Charming Studio by the Park", capacity: 2, image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=600", features: ["WiFi", "Kitchenette", "Garden Access", "Parking"], pricePerHour: 16000, available: true },
-  { id: "ab4", name: "Family House with Garden", capacity: 6, image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600", features: ["WiFi", "Full Kitchen", "Garden", "BBQ", "Parking", "Pet Friendly"], pricePerHour: 45000, available: true },
-  { id: "ab5", name: "Stylish Flat near University", capacity: 3, image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600", features: ["WiFi", "Kitchen", "Workspace", "Washer"], pricePerHour: 22000, available: false },
-  { id: "ab6", name: "Luxury Penthouse Downtown", capacity: 4, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", features: ["Rooftop Terrace", "Full Kitchen", "WiFi", "Premium View"], pricePerHour: 65000, available: true },
-];
-
 const spaces: Space[] = [
   { id: "s1", name: "Conference Room A", capacity: 20, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600", features: ["Projector", "WiFi", "Whiteboard", "AC", "Video Conferencing"], pricePerHour: 12000, available: true },
   { id: "s2", name: "Meeting Room B", capacity: 8, image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600", features: ["WiFi", "Whiteboard", "AC"], pricePerHour: 6000, available: true },
   { id: "s3", name: "Lecture Hall 101", capacity: 120, image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600", features: ["Projector", "WiFi", "Microphone", "AC", "Recording"], pricePerHour: 15000, available: false },
-  { id: "s4", name: "Hot Desk Area", capacity: 30, image: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=600", features: ["WiFi", "Power Outlets", "Standing Desks"], pricePerHour: 2500, available: true },
-  { id: "s5", name: "Private Office Suite", capacity: 6, image: "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=600", features: ["WiFi", "AC", "Printer", "Phone"], pricePerHour: 8000, available: true },
+  { id: "s4", name: "Seminar Room 305", capacity: 30, image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600", features: ["WiFi", "Projector", "Whiteboard"], pricePerHour: 7000, available: true },
+  { id: "s5", name: "Faculty Boardroom", capacity: 14, image: "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=600", features: ["WiFi", "AC", "Video Conferencing"], pricePerHour: 9000, available: true },
   { id: "s6", name: "Grand Ballroom", capacity: 300, image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600", features: ["Stage", "Sound System", "Lighting", "AC", "Catering Area"], pricePerHour: 50000, available: true },
   { id: "s7", name: "Seminar Room 202", capacity: 25, image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600", features: ["WiFi", "Projector", "Whiteboard", "AC"], pricePerHour: 8000, available: true },
   { id: "s8", name: "Executive Boardroom", capacity: 14, image: "https://images.unsplash.com/photo-1462826303086-329426d1aef5?w=600", features: ["Video Conferencing", "WiFi", "AC", "Catering"], pricePerHour: 15000, available: true },
   { id: "s9", name: "Computer Lab A", capacity: 40, image: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=600", features: ["WiFi", "PCs", "Projector", "AC"], pricePerHour: 10000, available: true },
   { id: "s10", name: "Workshop Studio", capacity: 20, image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600", features: ["WiFi", "Projector", "Art Supplies", "Whiteboard"], pricePerHour: 7000, available: true },
+];
+
+const sportsSpaces: Space[] = [
+  { id: "sp1", name: "Agrár Football Pitch", capacity: 22, image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=600", features: ["Full-size grass pitch", "Floodlights", "Changing rooms", "Showers", "Parking"], pricePerHour: 9000, available: true },
+  { id: "sp2", name: "G4 Football Pitch", capacity: 14, image: "https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=600", features: ["Artificial turf", "5-a-side", "Floodlights", "Changing rooms"], pricePerHour: 7500, available: true },
+  { id: "sp3", name: "West Hostel Football Pitch", capacity: 18, image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600", features: ["Artificial turf", "7-a-side", "Floodlights", "Outdoor"], pricePerHour: 8000, available: true },
+  { id: "sp4", name: "Main Basketball Court", capacity: 20, image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600", features: ["Full court", "Indoor", "Changing rooms", "Scoreboard", "Spectator seating"], pricePerHour: 6500, available: true },
+  { id: "sp5", name: "Indoor Training Court", capacity: 12, image: "https://images.unsplash.com/photo-1518614368389-d4f02c2c84e8?w=600", features: ["Half court", "Indoor", "Air conditioned", "Equipment included"], pricePerHour: 4500, available: true },
 ];
 
 export const institutions: Institution[] = [
@@ -143,14 +133,14 @@ export const institutions: Institution[] = [
   },
   {
     id: "inst-3",
-    name: "SPOT Coworking Debrecen",
-    type: "coworking",
+    name: "University Sports Facilities",
+    type: "sports",
     city: "Debrecen",
-    description: "Modern coworking hub in downtown Debrecen with flexible desks and private offices.",
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600",
-    rating: 4.7,
+    description: "Outdoor and indoor sports pitches operated by the University of Debrecen — open to students, staff and the public.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Debreceni_Nagyerd%C5%91%2C_sportk%C3%B6zpont_a_magasb%C3%B3l.jpg",
+    rating: 4.6,
     buildings: [
-      { id: "b8", name: "SPOT Center", spaces: [spaces[3], spaces[4], spaces[1]] },
+      { id: "b8", name: "Football Pitches", spaces: [sportsSpaces[0], sportsSpaces[1], sportsSpaces[2]] },
     ],
   },
   {
@@ -181,52 +171,24 @@ export const institutions: Institution[] = [
   },
   {
     id: "inst-6",
-    name: "IdeaLab Coworking",
-    type: "coworking",
+    name: "Debreceni Sportcentrum",
+    type: "sports",
     city: "Debrecen",
-    description: "Creative coworking space near the university district, popular with startups.",
-    image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=600",
-    rating: 4.3,
-    buildings: [
-      { id: "b13", name: "IdeaLab Hub", spaces: [spaces[3], spaces[4], spaces[9]] },
-    ],
-  },
-  {
-    id: "inst-7",
-    name: "Debreceni Közösségi Kert",
-    type: "garden",
-    city: "Debrecen",
-    description: "Community garden in Debrecen where residents can rent garden plots for growing vegetables, herbs, and flowers. Includes shared tools and a greenhouse.",
-    image: "https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=600",
-    rating: 4.8,
-    buildings: [
-      { id: "b14", name: "Section A — Vegetable Plots", spaces: [gardenPlots[0], gardenPlots[2], gardenPlots[3]] },
-      { id: "b15", name: "Section B — Herb & Flower Gardens", spaces: [gardenPlots[1], gardenPlots[4]] },
-      { id: "b16", name: "Greenhouse & Facilities", spaces: [gardenPlots[5]] },
-    ],
-  },
-  {
-    id: "inst-8",
-    name: "Debrecen Stays — Airbnb Collection",
-    type: "airbnb",
-    city: "Debrecen",
-    description: "Curated collection of Airbnb listings across Debrecen — from cozy lofts in the city center to family homes near the Great Forest.",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600",
+    description: "Indoor sports complex in the heart of Debrecen offering basketball courts, training halls and equipment rental.",
+    image: "https://images.unsplash.com/photo-1505666287802-931dc83948e9?w=900",
     rating: 4.7,
     buildings: [
-      { id: "b17", name: "Downtown Listings", spaces: [airbnbListings[0], airbnbListings[1], airbnbListings[5]] },
-      { id: "b18", name: "Near University", spaces: [airbnbListings[2], airbnbListings[4]] },
-      { id: "b19", name: "Family Homes", spaces: [airbnbListings[3]] },
+      { id: "b13", name: "Main Arena", spaces: [sportsSpaces[3], sportsSpaces[4]] },
     ],
   },
 ];
 
 export const bookings: Booking[] = [
   { id: "bk1", spaceName: "Conference Room A", institutionName: "Hotel Lycium Debrecen", buildingName: "Main Building", date: "2026-02-20", startTime: "09:00", endTime: "12:00", status: "confirmed", capacity: 20 },
-  { id: "bk2", spaceName: "Hot Desk Area", institutionName: "SPOT Coworking Debrecen", buildingName: "SPOT Center", date: "2026-02-22", startTime: "08:00", endTime: "18:00", status: "pending", capacity: 1 },
+  { id: "bk2", spaceName: "Agrár Football Pitch", institutionName: "University Sports Facilities", buildingName: "Football Pitches", date: "2026-02-22", startTime: "18:00", endTime: "20:00", status: "pending", capacity: 22 },
   { id: "bk3", spaceName: "Grand Ballroom", institutionName: "Kölcsey Convention Centre", buildingName: "Main Hall", date: "2026-02-18", startTime: "14:00", endTime: "22:00", status: "cancelled", capacity: 200 },
   { id: "bk4", spaceName: "Lecture Hall 101", institutionName: "University of Debrecen", buildingName: "Faculty of Informatics", date: "2026-03-01", startTime: "10:00", endTime: "13:00", status: "confirmed", capacity: 80 },
-  { id: "bk5", spaceName: "Private Office Suite", institutionName: "IdeaLab Coworking", buildingName: "IdeaLab Hub", date: "2026-02-25", startTime: "09:00", endTime: "17:00", status: "confirmed", capacity: 4 },
+  { id: "bk5", spaceName: "Main Basketball Court", institutionName: "Debreceni Sportcentrum", buildingName: "Main Arena", date: "2026-02-25", startTime: "17:00", endTime: "19:00", status: "confirmed", capacity: 20 },
 ];
 
 export const getInstitutionById = (id: string) => institutions.find((i) => i.id === id);
@@ -252,17 +214,13 @@ export const getSpaceById = (spaceId: string): { space: Space; building: Buildin
 export const typeLabelMap: Record<InstitutionType, string> = {
   hotel: "Hotel",
   university: "University",
-  coworking: "Coworking Space",
   event: "Event Venue",
-  garden: "Community Garden",
-  airbnb: "Airbnb",
+  sports: "Sports Facility",
 };
 
 export const typeBadgeClass: Record<InstitutionType, string> = {
   hotel: "badge-hotel",
   university: "badge-university",
-  coworking: "badge-coworking",
   event: "badge-event",
-  garden: "badge-garden",
-  airbnb: "badge-airbnb",
+  sports: "badge-sports",
 };
