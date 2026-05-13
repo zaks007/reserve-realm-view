@@ -57,12 +57,12 @@ const DEFAULT_SUPER_ADMINS = ["zakariumar2005@gmail.com"];
 const seedRequests: InstitutionRequest[] = [
   {
     id: "req-1",
-    name: "Debrecen Tech Hub",
-    type: "coworking",
+    name: "Debrecen Arena Sports Club",
+    type: "sports",
     city: "Debrecen",
-    contactEmail: "info@debrecentech.hu",
-    description: "A new coworking space in the city center catering to startups and remote workers.",
-    website: "https://debrecentech.example.com",
+    contactEmail: "info@debrecenarena.hu",
+    description: "A new sports complex offering football pitches and indoor courts for clubs and casual players.",
+    website: "https://debrecenarena.example.com",
     status: "pending",
     submittedAt: new Date(Date.now() - 86400000 * 2).toISOString(),
     submittedBy: "founder@debrecentech.hu",
