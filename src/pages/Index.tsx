@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Building2, GraduationCap, Briefcase, PartyPopper, MapPin, Calendar, Users, Flower2, Home } from "lucide-react";
+import { Search, Building2, GraduationCap, PartyPopper, MapPin, Calendar, Users, Trophy } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,11 +10,9 @@ import heroBg from "@/assets/hero-bg.jpg";
 const typeFilters: { type: InstitutionType | "all"; label: string; icon: React.ElementType }[] = [
   { type: "all", label: "All", icon: Search },
   { type: "hotel", label: "Hotels", icon: Building2 },
-  { type: "airbnb", label: "Airbnbs", icon: Home },
   { type: "university", label: "Universities", icon: GraduationCap },
-  { type: "coworking", label: "Coworking", icon: Briefcase },
-  { type: "event", label: "Events", icon: PartyPopper },
-  { type: "garden", label: "Gardens", icon: Flower2 },
+  { type: "event", label: "Event Venues", icon: PartyPopper },
+  { type: "sports", label: "Sports", icon: Trophy },
 ];
 
 const Index = () => {
@@ -40,7 +38,7 @@ const Index = () => {
             Book Any Space in Debrecen
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            Find and reserve meeting rooms, lecture halls, coworking desks, and event venues across institutions in Debrecen.
+            Find and reserve hotel rooms, lecture halls, sports pitches, and event venues across institutions in Debrecen.
           </p>
 
           {/* Search Bar */}

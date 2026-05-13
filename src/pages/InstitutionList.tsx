@@ -7,7 +7,7 @@ import InstitutionCard from "@/components/InstitutionCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { institutions, InstitutionType, typeLabelMap } from "@/data/mockData";
 
-const types: (InstitutionType | "all")[] = ["all", "hotel", "airbnb", "university", "coworking", "event", "garden"];
+const types: (InstitutionType | "all")[] = ["all", "hotel", "university", "event", "sports"];
 
 const allFeatures = Array.from(new Set(institutions.flatMap(i =>
   (i.campuses?.flatMap(c => c.buildings.flatMap(b => b.spaces.flatMap(s => s.features))) || [])
