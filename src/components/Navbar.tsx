@@ -65,6 +65,9 @@ const Navbar = () => {
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-2">
                   <UserIcon className="h-4 w-4" /> {user.name}
+                  <span className={`hidden lg:inline text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${roleBadgeClass[user.role]}`}>
+                    {roleLabel[user.role]}
+                  </span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
