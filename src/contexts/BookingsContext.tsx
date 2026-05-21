@@ -14,7 +14,7 @@ export interface SimBooking extends Omit<Booking, "status"> {
 
 interface BookingsContextValue {
   bookings: SimBooking[];
-  createBooking: (b: Omit<SimBooking, "id" | "status">) => { ok: boolean; error?: string; booking?: SimBooking };
+  createBooking: (b: Omit<SimBooking, "id" | "status">, opts?: { autoApprove?: boolean; free?: boolean }) => { ok: boolean; error?: string; booking?: SimBooking };
   updateStatus: (id: string, status: BookingStatus, reason?: string) => void;
   cancelBooking: (id: string) => void;
   hasConflict: (spaceId: string, date: string, start: string, end: string, ignoreId?: string) => boolean;
