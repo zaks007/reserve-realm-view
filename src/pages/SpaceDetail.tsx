@@ -8,7 +8,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import RoomAvailabilityCalendar from "@/components/RoomAvailabilityCalendar";
 import { getSpaceById } from "@/data/mockData";
 import { toast } from "@/hooks/use-toast";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth, isUniversityUserRole } from "@/contexts/AuthContext";
 import { useBookings } from "@/contexts/BookingsContext";
 
 const SpaceDetail = () => {
