@@ -90,7 +90,9 @@ const SpaceDetail = () => {
             <div className="bg-card border rounded-lg p-4 text-center">
               <DollarSign className="h-5 w-5 mx-auto mb-2 text-primary" />
               <p className="text-sm text-muted-foreground">Price/Hour</p>
-              <p className="font-bold text-lg">{space.pricePerHour.toLocaleString()} HUF</p>
+              <p className="font-bold text-lg">
+                {effectivePrice === 0 ? "Free" : `${effectivePrice.toLocaleString()} HUF`}
+              </p>
             </div>
             <div className="bg-card border rounded-lg p-4 text-center">
               <Clock className="h-5 w-5 mx-auto mb-2 text-primary" />
