@@ -120,9 +120,19 @@ const SpaceDetail = () => {
         <div className="lg:col-span-1">
           <div className="bg-card border rounded-xl p-6 sticky top-24">
             <h3 className="text-xl font-bold mb-1">Reserve This Space</h3>
-            <p className="text-sm text-muted-foreground mb-6">
-              {space.pricePerHour.toLocaleString()} HUF/hour · {institution.name}
+            <p className="text-sm text-muted-foreground mb-3">
+              {effectivePrice === 0 ? "Free" : `${effectivePrice.toLocaleString()} HUF/hour`} · {institution.name}
             </p>
+            {isFreeAndInstant && (
+              <div className="mb-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-700">
+                ✓ University access: free booking with instant confirmation.
+              </div>
+            )}
+            {isUniSpace && !isInternalUni && (
+              <div className="mb-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700">
+                External users: bookings require approval from the campus admin.
+              </div>
+            )}
             <form onSubmit={handleReserve} className="space-y-4">
               <div>
                 <Label>Date</Label>
@@ -139,9 +149,11 @@ const SpaceDetail = () => {
                 </div>
               </div>
               <Button type="submit" className="w-full" size="lg" disabled={!space.available}>
-                {space.available ? "Submit Booking Request" : "Currently Unavailable"}
+                {!space.available ? "Currently Unavailable" : isFreeAndInstant ? "Book Instantly (Free)" : "Submit Booking Request"}
               </Button>
-              <p className="text-xs text-muted-foreground text-center">Bookings require approval from the institution.</p>
+              <p className="text-xs text-muted-foreground text-center">
+                {isFreeAndInstant ? "Confirmed immediately for university members." : "Bookings require approval from the institution."}
+              </p>
             </form>
           </div>
         </div>
