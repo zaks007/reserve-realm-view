@@ -27,6 +27,11 @@ const SpaceDetail = () => {
 
   const { space, building, institution, campus } = result;
 
+  const isUniSpace = institution.type === "university";
+  const isInternalUni = !!user && isUniversityUserRole(user.role);
+  const isFreeAndInstant = isUniSpace && isInternalUni;
+  const effectivePrice = isFreeAndInstant ? 0 : space.pricePerHour;
+
   const breadcrumbs = [
     { label: "Explore", to: "/institutions" },
     { label: institution.name, to: `/institutions/${institution.id}` },
@@ -53,11 +58,15 @@ const SpaceDetail = () => {
       buildingName: building.name, campusId: campus?.id,
       date, startTime, endTime,
       capacity: space.capacity, userEmail: user.email,
-    });
+    }, { autoApprove: isFreeAndInstant, free: isFreeAndInstant });
     if (!res.ok) {
       toast({ title: "Booking conflict", description: res.error, variant: "destructive" }); return;
     }
-    toast({ title: "Booking submitted!", description: "Your request is now pending approval." });
+    if (isFreeAndInstant) {
+      toast({ title: "Booking confirmed!", description: "Free instant booking for university users." });
+    } else {
+      toast({ title: "Booking submitted!", description: "Your request is now pending approval." });
+    }
     navigate("/my-bookings");
   };
 
