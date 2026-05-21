@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Building2, CalendarDays, LayoutDashboard, Menu, X, LogIn, LogOut, ShieldCheck, MapPin, User as UserIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useAuth, roleLabel } from "@/contexts/AuthContext";
+import { useAuth, roleLabel, roleBadgeClass } from "@/contexts/AuthContext";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator, DropdownMenuLabel } from "@/components/ui/dropdown-menu";
 
 const baseLinks = [
@@ -65,6 +65,9 @@ const Navbar = () => {
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-2">
                   <UserIcon className="h-4 w-4" /> {user.name}
+                  <span className={`hidden lg:inline text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${roleBadgeClass[user.role]}`}>
+                    {roleLabel[user.role]}
+                  </span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">

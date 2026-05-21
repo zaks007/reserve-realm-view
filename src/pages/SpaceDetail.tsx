@@ -8,7 +8,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import RoomAvailabilityCalendar from "@/components/RoomAvailabilityCalendar";
 import { getSpaceById } from "@/data/mockData";
 import { toast } from "@/hooks/use-toast";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth, isUniversityUserRole } from "@/contexts/AuthContext";
 import { useBookings } from "@/contexts/BookingsContext";
 
 const SpaceDetail = () => {
@@ -26,6 +26,11 @@ const SpaceDetail = () => {
   }
 
   const { space, building, institution, campus } = result;
+
+  const isUniSpace = institution.type === "university";
+  const isInternalUni = !!user && isUniversityUserRole(user.role);
+  const isFreeAndInstant = isUniSpace && isInternalUni;
+  const effectivePrice = isFreeAndInstant ? 0 : space.pricePerHour;
 
   const breadcrumbs = [
     { label: "Explore", to: "/institutions" },
@@ -53,11 +58,15 @@ const SpaceDetail = () => {
       buildingName: building.name, campusId: campus?.id,
       date, startTime, endTime,
       capacity: space.capacity, userEmail: user.email,
-    });
+    }, { autoApprove: isFreeAndInstant, free: isFreeAndInstant });
     if (!res.ok) {
       toast({ title: "Booking conflict", description: res.error, variant: "destructive" }); return;
     }
-    toast({ title: "Booking submitted!", description: "Your request is now pending approval." });
+    if (isFreeAndInstant) {
+      toast({ title: "Booking confirmed!", description: "Free instant booking for university users." });
+    } else {
+      toast({ title: "Booking submitted!", description: "Your request is now pending approval." });
+    }
     navigate("/my-bookings");
   };
 
@@ -81,7 +90,9 @@ const SpaceDetail = () => {
             <div className="bg-card border rounded-lg p-4 text-center">
               <DollarSign className="h-5 w-5 mx-auto mb-2 text-primary" />
               <p className="text-sm text-muted-foreground">Price/Hour</p>
-              <p className="font-bold text-lg">{space.pricePerHour.toLocaleString()} HUF</p>
+              <p className="font-bold text-lg">
+                {effectivePrice === 0 ? "Free" : `${effectivePrice.toLocaleString()} HUF`}
+              </p>
             </div>
             <div className="bg-card border rounded-lg p-4 text-center">
               <Clock className="h-5 w-5 mx-auto mb-2 text-primary" />
@@ -109,9 +120,19 @@ const SpaceDetail = () => {
         <div className="lg:col-span-1">
           <div className="bg-card border rounded-xl p-6 sticky top-24">
             <h3 className="text-xl font-bold mb-1">Reserve This Space</h3>
-            <p className="text-sm text-muted-foreground mb-6">
-              {space.pricePerHour.toLocaleString()} HUF/hour · {institution.name}
+            <p className="text-sm text-muted-foreground mb-3">
+              {effectivePrice === 0 ? "Free" : `${effectivePrice.toLocaleString()} HUF/hour`} · {institution.name}
             </p>
+            {isFreeAndInstant && (
+              <div className="mb-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-700">
+                ✓ University access: free booking with instant confirmation.
+              </div>
+            )}
+            {isUniSpace && !isInternalUni && (
+              <div className="mb-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700">
+                External users: bookings require approval from the campus admin.
+              </div>
+            )}
             <form onSubmit={handleReserve} className="space-y-4">
               <div>
                 <Label>Date</Label>
@@ -128,9 +149,11 @@ const SpaceDetail = () => {
                 </div>
               </div>
               <Button type="submit" className="w-full" size="lg" disabled={!space.available}>
-                {space.available ? "Submit Booking Request" : "Currently Unavailable"}
+                {!space.available ? "Currently Unavailable" : isFreeAndInstant ? "Book Instantly (Free)" : "Submit Booking Request"}
               </Button>
-              <p className="text-xs text-muted-foreground text-center">Bookings require approval from the institution.</p>
+              <p className="text-xs text-muted-foreground text-center">
+                {isFreeAndInstant ? "Confirmed immediately for university members." : "Bookings require approval from the institution."}
+              </p>
             </form>
           </div>
         </div>

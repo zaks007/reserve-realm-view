@@ -14,7 +14,7 @@ export interface SimBooking extends Omit<Booking, "status"> {
 
 interface BookingsContextValue {
   bookings: SimBooking[];
-  createBooking: (b: Omit<SimBooking, "id" | "status">) => { ok: boolean; error?: string; booking?: SimBooking };
+  createBooking: (b: Omit<SimBooking, "id" | "status">, opts?: { autoApprove?: boolean; free?: boolean }) => { ok: boolean; error?: string; booking?: SimBooking };
   updateStatus: (id: string, status: BookingStatus, reason?: string) => void;
   cancelBooking: (id: string) => void;
   hasConflict: (spaceId: string, date: string, start: string, end: string, ignoreId?: string) => boolean;
@@ -52,11 +52,15 @@ export const BookingsProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-  const createBooking: BookingsContextValue["createBooking"] = (b) => {
+  const createBooking: BookingsContextValue["createBooking"] = (b, opts) => {
     if (hasConflict(b.spaceId, b.date, b.startTime, b.endTime)) {
       return { ok: false, error: "This time slot conflicts with an existing booking." };
     }
-    const booking: SimBooking = { ...b, id: `bk-${Date.now()}`, status: "pending" };
+    const booking: SimBooking = {
+      ...b,
+      id: `bk-${Date.now()}`,
+      status: opts?.autoApprove ? "approved" : "pending",
+    };
     setBookings(prev => [booking, ...prev]);
     return { ok: true, booking };
   };
