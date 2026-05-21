@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Building2, CalendarDays, LayoutDashboard, Menu, X, LogIn, LogOut, ShieldCheck, MapPin, User as UserIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useAuth, roleLabel } from "@/contexts/AuthContext";
+import { useAuth, roleLabel, roleBadgeClass } from "@/contexts/AuthContext";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator, DropdownMenuLabel } from "@/components/ui/dropdown-menu";
 
 const baseLinks = [
