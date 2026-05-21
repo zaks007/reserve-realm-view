@@ -242,7 +242,7 @@ export const institutions: Institution[] = [
 
 export const bookings: Booking[] = [
   { id: "bk1", spaceName: "Conference Room A", institutionName: "Hotel Lycium Debrecen", buildingName: "Main Building", date: "2026-02-20", startTime: "09:00", endTime: "12:00", status: "confirmed", capacity: 20 },
-  { id: "bk2", spaceName: "Agrár Football Pitch", institutionName: "University Sports Facilities", buildingName: "Football Pitches", date: "2026-02-22", startTime: "18:00", endTime: "20:00", status: "pending", capacity: 22 },
+  { id: "bk2", spaceName: "Agrár Football Pitch", institutionName: "Agrár Sport Pitch", buildingName: "Outdoor Pitch", date: "2026-02-22", startTime: "18:00", endTime: "20:00", status: "pending", capacity: 22 },
   { id: "bk3", spaceName: "Plot B1 — Large Family Plot", institutionName: "Debreceni Közösségi Kert", buildingName: "Section A — Vegetable Plots", date: "2026-02-18", startTime: "08:00", endTime: "11:00", status: "cancelled", capacity: 4 },
   { id: "bk4", spaceName: "Lecture Hall 101", institutionName: "University of Debrecen", buildingName: "Faculty of Informatics", date: "2026-03-01", startTime: "10:00", endTime: "13:00", status: "confirmed", capacity: 80 },
   { id: "bk5", spaceName: "Main Basketball Court", institutionName: "Debreceni Sportcentrum", buildingName: "Main Arena", date: "2026-02-25", startTime: "17:00", endTime: "19:00", status: "confirmed", capacity: 20 },
