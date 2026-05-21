@@ -52,11 +52,15 @@ export const BookingsProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-  const createBooking: BookingsContextValue["createBooking"] = (b) => {
+  const createBooking: BookingsContextValue["createBooking"] = (b, opts) => {
     if (hasConflict(b.spaceId, b.date, b.startTime, b.endTime)) {
       return { ok: false, error: "This time slot conflicts with an existing booking." };
     }
-    const booking: SimBooking = { ...b, id: `bk-${Date.now()}`, status: "pending" };
+    const booking: SimBooking = {
+      ...b,
+      id: `bk-${Date.now()}`,
+      status: opts?.autoApprove ? "approved" : "pending",
+    };
     setBookings(prev => [booking, ...prev]);
     return { ok: true, booking };
   };
