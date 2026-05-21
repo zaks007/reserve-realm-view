@@ -238,6 +238,26 @@ export const useAuth = () => {
 export const roleLabel: Record<UserRole, string> = {
   guest: "Guest",
   user: "User",
+  student: "University Student",
+  teacher: "University Teacher",
+  institution_pending: "Institution (Pending)",
+  institution_admin: "Institution Admin",
+  campus_admin: "Campus Admin",
+  super_admin: "Super Admin",
+};
+
+export const roleBadgeClass: Record<UserRole, string> = {
+  guest: "bg-muted text-muted-foreground",
+  user: "bg-secondary text-secondary-foreground",
+  student: "bg-blue-500/15 text-blue-700",
+  teacher: "bg-indigo-500/15 text-indigo-700",
+  institution_pending: "bg-amber-500/15 text-amber-700",
+  institution_admin: "bg-emerald-500/15 text-emerald-700",
+  campus_admin: "bg-teal-500/15 text-teal-700",
+  super_admin: "bg-primary/15 text-primary",
+};
+  guest: "Guest",
+  user: "User",
   institution_pending: "Institution (Pending)",
   institution_admin: "Institution Admin",
   campus_admin: "Campus Admin",
