@@ -151,14 +151,38 @@ export const institutions: Institution[] = [
   },
   {
     id: "inst-3",
-    name: "University Sports Facilities",
+    name: "Agrár Sport Pitch",
     type: "sports",
     city: "Debrecen",
-    description: "Outdoor and indoor sports pitches operated by the University of Debrecen — open to students, staff and the public.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Debreceni_Nagyerd%C5%91%2C_sportk%C3%B6zpont_a_magasb%C3%B3l.jpg",
+    description: "Full-size outdoor grass football pitch on the Agrár site — open to clubs, casual players and external bookings.",
+    image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=900",
     rating: 4.6,
     buildings: [
-      { id: "b8", name: "Football Pitches", spaces: [sportsSpaces[0], sportsSpaces[1], sportsSpaces[2]] },
+      { id: "b8", name: "Outdoor Pitch", spaces: [sportsSpaces[0]] },
+    ],
+  },
+  {
+    id: "inst-9",
+    name: "G4 Sport Arena",
+    type: "sports",
+    city: "Debrecen",
+    description: "Compact 5-a-side artificial-turf pitch with floodlights — perfect for evening matches and small groups.",
+    image: "https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=900",
+    rating: 4.5,
+    buildings: [
+      { id: "b20", name: "Turf Pitch", spaces: [sportsSpaces[1]] },
+    ],
+  },
+  {
+    id: "inst-10",
+    name: "West Hostel Sport Centre",
+    type: "sports",
+    city: "Debrecen",
+    description: "Outdoor 7-a-side artificial pitch next to the West Hostel — available to the public year-round.",
+    image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=900",
+    rating: 4.4,
+    buildings: [
+      { id: "b21", name: "Turf Pitch", spaces: [sportsSpaces[2]] },
     ],
   },
   {
