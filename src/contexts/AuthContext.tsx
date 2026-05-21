@@ -256,10 +256,3 @@ export const roleBadgeClass: Record<UserRole, string> = {
   campus_admin: "bg-teal-500/15 text-teal-700",
   super_admin: "bg-primary/15 text-primary",
 };
-  guest: "Guest",
-  user: "User",
-  institution_pending: "Institution (Pending)",
-  institution_admin: "Institution Admin",
-  campus_admin: "Campus Admin",
-  super_admin: "Super Admin",
-};
