@@ -168,11 +168,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (superAdminEmails.map(e => e.toLowerCase()).includes(email.toLowerCase())) {
       setUser({ id: `sa-${Date.now()}`, email, name: email.split("@")[0], role: "super_admin" });
     } else if (isUniversityEmail(email)) {
-      // simulate: faculty/staff addresses → teacher, otherwise student
-      const isStaff = /^(dr|prof|admin|teacher|staff|faculty|[a-z]+\.[a-z]+)/i.test(email.split("@")[0]);
+      // All university-domain logins are treated as teachers/officials
       setUser({
         id: `uni-${Date.now()}`, email, name: email.split("@")[0].replace(/[._]/g, " "),
-        role: isStaff ? "teacher" : "student", institutionId: "inst-2",
+        role: "teacher", institutionId: "inst-2",
       });
     } else {
       setUser({ id: `usr-${Date.now()}`, email, name: email.split("@")[0], role: "user" });
