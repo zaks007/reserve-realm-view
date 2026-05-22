@@ -185,7 +185,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (role === "guest") { setUser(null); return; }
     const presets: Record<Exclude<UserRole, "guest">, SimUser> = {
       user: { id: "demo-user", email: "user@demo.hu", name: "Demo User", role: "user" },
-      student: { id: "demo-student", email: "student@unideb.hu", name: "Demo Student", role: "student", institutionId: "inst-2" },
+      
       teacher: { id: "demo-teacher", email: "dr.kovacs@unideb.hu", name: "Dr. Kovács (Teacher)", role: "teacher", institutionId: "inst-2" },
       institution_pending: { id: "demo-inst-p", email: "pending@demo.hu", name: "Pending Institution", role: "institution_pending", institutionId: "req-1" },
       institution_admin: { id: "demo-inst-a", email: "admin@unideb.hu", name: "University Admin", role: "institution_admin", institutionId: "inst-2" },
