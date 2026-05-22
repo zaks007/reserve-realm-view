@@ -237,7 +237,7 @@ export const useAuth = () => {
 export const roleLabel: Record<UserRole, string> = {
   guest: "Guest",
   user: "User",
-  student: "University Student",
+  
   teacher: "University Teacher",
   institution_pending: "Institution (Pending)",
   institution_admin: "Institution Admin",
