@@ -1,13 +1,13 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-export type UserRole = "guest" | "user" | "student" | "teacher" | "institution_pending" | "institution_admin" | "campus_admin" | "super_admin";
+export type UserRole = "guest" | "user" | "teacher" | "institution_pending" | "institution_admin" | "campus_admin" | "super_admin";
 
 /** Email domains treated as internal university affiliates */
 export const UNIVERSITY_DOMAINS = ["unideb.hu", "mailbox.unideb.hu"];
 export const isUniversityEmail = (email: string) =>
   UNIVERSITY_DOMAINS.some(d => email.toLowerCase().endsWith("@" + d));
 /** Roles considered internal university users (free + instant booking on uni spaces) */
-export const isUniversityUserRole = (r: UserRole) => r === "teacher" || r === "student";
+export const isUniversityUserRole = (r: UserRole) => r === "teacher";
 
 export interface SimUser {
   id: string;
