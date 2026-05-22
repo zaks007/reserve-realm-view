@@ -73,10 +73,6 @@ const uniSpaces: Space[] = [
   { id: "u-sr6", name: "Seminar Room M-7 (Medical)", capacity: 24, image: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=600", features: ["WiFi", "Projector", "Anatomical Models", "AC"], pricePerHour: 0, available: true },
 ];
 
-const spaces: Space[] = [
-  { id: "s1", name: "Conference Room A", capacity: 20, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600", features: ["Projector", "WiFi", "Whiteboard", "AC", "Video Conferencing"], pricePerHour: 12000, available: true },
-  { id: "s6", name: "Grand Ballroom", capacity: 300, image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600", features: ["Stage", "Sound System", "Lighting", "AC", "Catering Area"], pricePerHour: 50000, available: true },
-];
 
 const sportsSpaces: Space[] = [
   { id: "sp1", name: "Agrár Football Pitch", capacity: 22, image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=600", features: ["Full-size grass pitch", "Floodlights", "Changing rooms", "Showers", "Parking"], pricePerHour: 9000, available: true },
