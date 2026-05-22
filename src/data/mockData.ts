@@ -61,17 +61,21 @@ const hotelFlats: Space[] = [
   { id: "hf4", name: "Penthouse Suite", capacity: 4, image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600", features: ["Terrace", "Full Kitchen", "Jacuzzi", "WiFi", "Panoramic View"], pricePerHour: 120000, available: true },
 ];
 
+const uniSpaces: Space[] = [
+  { id: "u-lh1", name: "Lecture Hall 101", capacity: 120, image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600", features: ["Projector", "WiFi", "Microphone", "AC", "Recording", "Tiered Seating"], pricePerHour: 0, available: true },
+  { id: "u-lh2", name: "Lecture Hall 202 — Auditorium", capacity: 220, image: "https://images.unsplash.com/photo-1559223607-a43c990c692c?w=600", features: ["Projector", "WiFi", "Microphone", "AC", "Recording", "Stage"], pricePerHour: 0, available: true },
+  { id: "u-lh3", name: "Lecture Hall A-15", capacity: 80, image: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600", features: ["Projector", "WiFi", "Microphone", "AC"], pricePerHour: 0, available: false },
+  { id: "u-sr1", name: "Seminar Room 305", capacity: 30, image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600", features: ["WiFi", "Projector", "Whiteboard", "AC"], pricePerHour: 0, available: true },
+  { id: "u-sr2", name: "Seminar Room 202", capacity: 25, image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600", features: ["WiFi", "Projector", "Whiteboard"], pricePerHour: 0, available: true },
+  { id: "u-sr3", name: "Seminar Room 110", capacity: 28, image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600", features: ["WiFi", "Smart Board", "AC"], pricePerHour: 0, available: true },
+  { id: "u-sr4", name: "Seminar Room B-4", capacity: 22, image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600", features: ["WiFi", "Projector", "Whiteboard", "Movable Tables"], pricePerHour: 0, available: true },
+  { id: "u-sr5", name: "Seminar Room L-2 (Library)", capacity: 18, image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600", features: ["WiFi", "Whiteboard", "Quiet Zone"], pricePerHour: 0, available: true },
+  { id: "u-sr6", name: "Seminar Room M-7 (Medical)", capacity: 24, image: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=600", features: ["WiFi", "Projector", "Anatomical Models", "AC"], pricePerHour: 0, available: true },
+];
+
 const spaces: Space[] = [
   { id: "s1", name: "Conference Room A", capacity: 20, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600", features: ["Projector", "WiFi", "Whiteboard", "AC", "Video Conferencing"], pricePerHour: 12000, available: true },
-  { id: "s2", name: "Meeting Room B", capacity: 8, image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600", features: ["WiFi", "Whiteboard", "AC"], pricePerHour: 6000, available: true },
-  { id: "s3", name: "Lecture Hall 101", capacity: 120, image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600", features: ["Projector", "WiFi", "Microphone", "AC", "Recording"], pricePerHour: 15000, available: false },
-  { id: "s4", name: "Seminar Room 305", capacity: 30, image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600", features: ["WiFi", "Projector", "Whiteboard"], pricePerHour: 7000, available: true },
-  { id: "s5", name: "Faculty Boardroom", capacity: 14, image: "https://images.unsplash.com/photo-1497215842964-222b430dc094?w=600", features: ["WiFi", "AC", "Video Conferencing"], pricePerHour: 9000, available: true },
   { id: "s6", name: "Grand Ballroom", capacity: 300, image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600", features: ["Stage", "Sound System", "Lighting", "AC", "Catering Area"], pricePerHour: 50000, available: true },
-  { id: "s7", name: "Seminar Room 202", capacity: 25, image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600", features: ["WiFi", "Projector", "Whiteboard", "AC"], pricePerHour: 8000, available: true },
-  { id: "s8", name: "Executive Boardroom", capacity: 14, image: "https://images.unsplash.com/photo-1462826303086-329426d1aef5?w=600", features: ["Video Conferencing", "WiFi", "AC", "Catering"], pricePerHour: 15000, available: true },
-  { id: "s9", name: "Computer Lab A", capacity: 40, image: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=600", features: ["WiFi", "PCs", "Projector", "AC"], pricePerHour: 10000, available: true },
-  { id: "s10", name: "Workshop Studio", capacity: 20, image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600", features: ["WiFi", "Projector", "Art Supplies", "Whiteboard"], pricePerHour: 7000, available: true },
 ];
 
 const sportsSpaces: Space[] = [
