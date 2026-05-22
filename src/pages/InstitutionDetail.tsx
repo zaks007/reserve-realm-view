@@ -1,11 +1,13 @@
-import { useParams, Link } from "react-router-dom";
-import { MapPin, Star, Users, DoorOpen } from "lucide-react";
+import { useParams, Link, useSearchParams } from "react-router-dom";
+import { MapPin, Star, Users, DoorOpen, Building2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { getInstitutionById, typeLabelMap, typeBadgeClass } from "@/data/mockData";
+import type { Space } from "@/data/mockData";
 
 const InstitutionDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
   const institution = getInstitutionById(id || "");
 
   if (!institution) {
@@ -17,12 +19,17 @@ const InstitutionDetail = () => {
   }
 
   const hasCampuses = institution.campuses && institution.campuses.length > 0;
+  const selectedCampusId = searchParams.get("campus");
+  const selectedCampus = hasCampuses
+    ? institution.campuses!.find((c) => c.id === selectedCampusId)
+    : undefined;
 
   return (
     <div className="container py-4">
       <Breadcrumbs items={[
         { label: "Explore", to: "/institutions" },
-        { label: institution.name },
+        { label: institution.name, to: `/institutions/${institution.id}` },
+        ...(selectedCampus ? [{ label: selectedCampus.name }] : []),
       ]} />
 
       {/* Header */}
@@ -47,38 +54,66 @@ const InstitutionDetail = () => {
         </div>
       </div>
 
-      {/* Campuses (University) */}
-      {hasCampuses && (
+      {/* University: campus list first */}
+      {hasCampuses && !selectedCampus && (
         <div className="mb-10">
-          <h2 className="text-2xl font-bold mb-6">Campuses</h2>
-          <div className="space-y-8">
-            {institution.campuses!.map((campus) => (
-              <div key={campus.id}>
-                <h3 className="text-xl font-semibold mb-4 text-primary">{campus.name}</h3>
-                {campus.buildings.map((building) => (
-                  <div key={building.id} className="mb-6">
-                    <h4 className="text-lg font-medium mb-3 flex items-center gap-2">
-                      <DoorOpen className="h-5 w-5 text-muted-foreground" />
-                      {building.name}
-                    </h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {building.spaces.map((space) => (
-                        <SpaceCard
-                          key={space.id}
-                          space={space}
-                          institutionId={institution.id}
-                        />
-                      ))}
-                    </div>
+          <h2 className="text-2xl font-bold mb-2">Choose a campus</h2>
+          <p className="text-muted-foreground mb-6">
+            Pick a campus to view its available seminar rooms and lecture halls.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {institution.campuses!.map((campus) => {
+              const spaceCount = campus.buildings.reduce((sum, b) => sum + b.spaces.length, 0);
+              return (
+                <Link
+                  key={campus.id}
+                  to={`/institutions/${institution.id}?campus=${campus.id}`}
+                  className="bg-card border rounded-xl p-6 card-hover flex items-start gap-4"
+                >
+                  <div className="h-12 w-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <Building2 className="h-6 w-6" />
                   </div>
-                ))}
-              </div>
-            ))}
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">{campus.name}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {campus.buildings.length} {campus.buildings.length === 1 ? "faculty" : "faculties"} · {spaceCount} rooms
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}
 
-      {/* Buildings (non-university) */}
+      {/* University: selected campus drill-down */}
+      {hasCampuses && selectedCampus && (
+        <div className="mb-10">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold">{selectedCampus.name}</h2>
+            <Button variant="outline" size="sm" asChild>
+              <Link to={`/institutions/${institution.id}`}>
+                <ArrowLeft className="h-4 w-4 mr-1.5" /> All campuses
+              </Link>
+            </Button>
+          </div>
+          {selectedCampus.buildings.map((building) => (
+            <div key={building.id} className="mb-8">
+              <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+                <DoorOpen className="h-5 w-5 text-muted-foreground" />
+                {building.name}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {building.spaces.map((space) => (
+                  <SpaceCard key={space.id} space={space} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Non-university: buildings */}
       {!hasCampuses && institution.buildings.length > 0 && (
         <div>
           <h2 className="text-2xl font-bold mb-6">Available Spaces</h2>
@@ -90,11 +125,7 @@ const InstitutionDetail = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {building.spaces.map((space) => (
-                  <SpaceCard
-                    key={space.id}
-                    space={space}
-                    institutionId={institution.id}
-                  />
+                  <SpaceCard key={space.id} space={space} />
                 ))}
               </div>
             </div>
@@ -105,10 +136,7 @@ const InstitutionDetail = () => {
   );
 };
 
-// Inline SpaceCard for this page
-import type { Space } from "@/data/mockData";
-
-const SpaceCard = ({ space, institutionId }: { space: Space; institutionId: string }) => (
+const SpaceCard = ({ space }: { space: Space }) => (
   <div className="bg-card rounded-lg border overflow-hidden card-hover">
     <div className="aspect-[16/10] overflow-hidden">
       <img src={space.image} alt={space.name} className="w-full h-full object-cover" />
@@ -129,7 +157,9 @@ const SpaceCard = ({ space, institutionId }: { space: Space; institutionId: stri
         )}
       </div>
       <div className="flex items-center justify-between">
-        <span className="font-bold text-primary">${space.pricePerHour}/hr</span>
+        <span className="font-bold text-primary">
+          {space.pricePerHour === 0 ? "Free" : `${space.pricePerHour.toLocaleString()} HUF/hr`}
+        </span>
         <Button size="sm" asChild disabled={!space.available}>
           <Link to={`/spaces/${space.id}`}>
             {space.available ? "Book Now" : "Unavailable"}
