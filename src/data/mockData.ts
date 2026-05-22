@@ -131,23 +131,23 @@ export const institutions: Institution[] = [
         id: "c1",
         name: "Kassai Campus",
         buildings: [
-          { id: "b3", name: "Faculty of Informatics", spaces: [spaces[2], spaces[8], spaces[6]] },
-          { id: "b4", name: "Faculty of Engineering", spaces: [spaces[1], spaces[9]] },
+          { id: "b3", name: "Faculty of Informatics", spaces: [uniSpaces[0], uniSpaces[3], uniSpaces[5]] },
+          { id: "b4", name: "Faculty of Engineering", spaces: [uniSpaces[2], uniSpaces[6]] },
         ],
       },
       {
         id: "c2",
         name: "Egyetem tér Campus",
         buildings: [
-          { id: "b5", name: "Main Building", spaces: [spaces[0], spaces[6]] },
-          { id: "b6", name: "Library & Study Center", spaces: [spaces[4], spaces[1]] },
+          { id: "b5", name: "Main Building", spaces: [uniSpaces[1], uniSpaces[3]] },
+          { id: "b6", name: "Library & Study Center", spaces: [uniSpaces[4], uniSpaces[7]] },
         ],
       },
       {
         id: "c3",
         name: "Medical Campus",
         buildings: [
-          { id: "b7", name: "Medical Faculty", spaces: [spaces[2], spaces[7]] },
+          { id: "b7", name: "Medical Faculty", spaces: [uniSpaces[0], uniSpaces[8]] },
         ],
       },
     ],
