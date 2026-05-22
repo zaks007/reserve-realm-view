@@ -248,7 +248,7 @@ export const roleLabel: Record<UserRole, string> = {
 export const roleBadgeClass: Record<UserRole, string> = {
   guest: "bg-muted text-muted-foreground",
   user: "bg-secondary text-secondary-foreground",
-  student: "bg-blue-500/15 text-blue-700",
+  
   teacher: "bg-indigo-500/15 text-indigo-700",
   institution_pending: "bg-amber-500/15 text-amber-700",
   institution_admin: "bg-emerald-500/15 text-emerald-700",
