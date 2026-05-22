@@ -3,7 +3,7 @@ import { Beaker, ChevronUp, ChevronDown } from "lucide-react";
 import { useAuth, UserRole, roleLabel } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 
-const ROLES: UserRole[] = ["guest", "user", "student", "teacher", "institution_pending", "institution_admin", "campus_admin", "super_admin"];
+const ROLES: UserRole[] = ["guest", "user", "teacher", "institution_pending", "institution_admin", "campus_admin", "super_admin"];
 
 const DevRoleSwitcher = () => {
   const { user, switchRole } = useAuth();

@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { User, Building2, ShieldCheck } from "lucide-react";
+import { User, Building2, ShieldCheck, GraduationCap } from "lucide-react";
 
 const options = [
-  { to: "/auth/signup/user", icon: User, title: "Normal User", desc: "Browse and book spaces. Account active immediately." },
-  { to: "/auth/signup/institution", icon: Building2, title: "Institution", desc: "Register your hotel, university, or venue. Requires Super Admin approval." },
-  { to: "/auth/signup/super-admin", icon: ShieldCheck, title: "Super Administrator", desc: "Restricted to authorized emails only." },
+  { to: "/auth/signup/user", icon: User, title: "Normal User", desc: "Browse and book hotels, sports facilities, gardens and stays. Instant access." },
+  { to: "/auth/login?hint=university", icon: GraduationCap, title: "University Teacher / Official", desc: "Sign in with your @unideb.hu email to get free, instant booking of seminar rooms and lecture halls." },
+  { to: "/auth/signup/institution", icon: Building2, title: "Institution", desc: "Register your hotel, university, sports facility, garden or stays. Requires Super Admin approval." },
+  { to: "/auth/signup/super-admin", icon: ShieldCheck, title: "Super Administrator", desc: "Restricted to authorized emails only — manages the whole platform." },
 ];
 
 const Signup = () => {
