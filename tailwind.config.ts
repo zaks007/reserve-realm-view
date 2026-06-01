@@ -14,7 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Instrument Serif", "Times New Roman", "serif"],
+        serif: ["Instrument Serif", "Times New Roman", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
