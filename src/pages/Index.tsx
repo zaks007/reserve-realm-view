@@ -21,7 +21,7 @@ const Index = () => {
   const [search, setSearch] = useState("");
   const [activeType, setActiveType] = useState<InstitutionType | "all">("all");
 
-  const featured = institutions.slice(0, 3);
+  const featured = institutions.slice(0, 6);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
