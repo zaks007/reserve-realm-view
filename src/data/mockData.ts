@@ -120,9 +120,11 @@ export const institutions: Institution[] = [
     description: "Modern 4-star hotel near the Great Forest with conference and event facilities.",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Hunyadi_J%C3%A1nos_Stra%C3%9Fe_1-3%2C_2022_Debrecen.jpg/960px-Hunyadi_J%C3%A1nos_Stra%C3%9Fe_1-3%2C_2022_Debrecen.jpg",
     rating: 4.6,
+    coords: { lat: 47.5316, lng: 21.6242 },
+    address: "Hunyadi János u. 1-3, 4025 Debrecen",
     buildings: [
-      { id: "b1", name: "Rooms", spaces: [hotelRooms[0], hotelRooms[1], hotelRooms[2], hotelRooms[3], hotelRooms[4]] },
-      { id: "b2", name: "Flats & Suites", spaces: [hotelFlats[0], hotelFlats[1], hotelFlats[3]] },
+      { id: "b1", name: "Rooms", coords: { lat: 47.5316, lng: 21.6242 }, spaces: [hotelRooms[0], hotelRooms[1], hotelRooms[2], hotelRooms[3], hotelRooms[4]] },
+      { id: "b2", name: "Flats & Suites", coords: { lat: 47.5316, lng: 21.6242 }, spaces: [hotelFlats[0], hotelFlats[1], hotelFlats[3]] },
     ],
   },
   {
@@ -133,28 +135,36 @@ export const institutions: Institution[] = [
     description: "One of Hungary's largest universities with multiple campuses across the city.",
     image: "https://upload.wikimedia.org/wikipedia/commons/7/73/DebrecenDSCN3583.JPG",
     rating: 4.5,
+    coords: { lat: 47.5536, lng: 21.6243 },
+    address: "Egyetem tér 1, 4032 Debrecen",
     campuses: [
       {
         id: "c1",
         name: "Kassai Campus",
+        coords: { lat: 47.5418, lng: 21.6428 },
+        address: "Kassai út 26, 4028 Debrecen",
         buildings: [
-          { id: "b3", name: "Faculty of Informatics", spaces: [uniSpaces[0], uniSpaces[3], uniSpaces[5]] },
-          { id: "b4", name: "Faculty of Engineering", spaces: [uniSpaces[2], uniSpaces[6]] },
+          { id: "b3", name: "Faculty of Informatics", coords: { lat: 47.5418, lng: 21.6428 }, address: "Kassai út 26", spaces: [uniSpaces[0], uniSpaces[3], uniSpaces[5]] },
+          { id: "b4", name: "Faculty of Engineering", coords: { lat: 47.5447, lng: 21.6512 }, address: "Ótemető u. 2-4", spaces: [uniSpaces[2], uniSpaces[6]] },
         ],
       },
       {
         id: "c2",
         name: "Egyetem tér Campus",
+        coords: { lat: 47.5536, lng: 21.6243 },
+        address: "Egyetem tér 1, 4032 Debrecen",
         buildings: [
-          { id: "b5", name: "Main Building", spaces: [uniSpaces[1], uniSpaces[3]] },
-          { id: "b6", name: "Library & Study Center", spaces: [uniSpaces[4], uniSpaces[7]] },
+          { id: "b5", name: "Main Building", coords: { lat: 47.5536, lng: 21.6243 }, address: "Egyetem tér 1", spaces: [uniSpaces[1], uniSpaces[3]] },
+          { id: "b6", name: "Library & Study Center", coords: { lat: 47.5527, lng: 21.6253 }, address: "Egyetem tér 1", spaces: [uniSpaces[4], uniSpaces[7]] },
         ],
       },
       {
         id: "c3",
         name: "Medical Campus",
+        coords: { lat: 47.5589, lng: 21.6275 },
+        address: "Nagyerdei krt. 98, 4032 Debrecen",
         buildings: [
-          { id: "b7", name: "Medical Faculty", spaces: [uniSpaces[0], uniSpaces[8]] },
+          { id: "b7", name: "Medical Faculty", coords: { lat: 47.5589, lng: 21.6275 }, address: "Nagyerdei krt. 98", spaces: [uniSpaces[0], uniSpaces[8]] },
         ],
       },
     ],
@@ -168,8 +178,10 @@ export const institutions: Institution[] = [
     description: "Full-size outdoor grass football pitch on the Agrár site — open to clubs, casual players and external bookings.",
     image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=900",
     rating: 4.6,
+    coords: { lat: 47.5470, lng: 21.5993 },
+    address: "Böszörményi út 138, 4032 Debrecen",
     buildings: [
-      { id: "b8", name: "Outdoor Pitch", spaces: [sportsSpaces[0]] },
+      { id: "b8", name: "Outdoor Pitch", coords: { lat: 47.5470, lng: 21.5993 }, spaces: [sportsSpaces[0]] },
     ],
   },
   {
@@ -180,8 +192,10 @@ export const institutions: Institution[] = [
     description: "Compact 5-a-side artificial-turf pitch with floodlights — perfect for evening matches and small groups.",
     image: "https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=900",
     rating: 4.5,
+    coords: { lat: 47.5398, lng: 21.6300 },
+    address: "Kassai út 26, 4028 Debrecen",
     buildings: [
-      { id: "b20", name: "Turf Pitch", spaces: [sportsSpaces[1]] },
+      { id: "b20", name: "Turf Pitch", coords: { lat: 47.5398, lng: 21.6300 }, spaces: [sportsSpaces[1]] },
     ],
   },
   {
@@ -192,8 +206,10 @@ export const institutions: Institution[] = [
     description: "Outdoor 7-a-side artificial pitch next to the West Hostel — available to the public year-round.",
     image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=900",
     rating: 4.4,
+    coords: { lat: 47.5469, lng: 21.6168 },
+    address: "Egyetem sgrt. 7, 4032 Debrecen",
     buildings: [
-      { id: "b21", name: "Turf Pitch", spaces: [sportsSpaces[2]] },
+      { id: "b21", name: "Turf Pitch", coords: { lat: 47.5469, lng: 21.6168 }, spaces: [sportsSpaces[2]] },
     ],
   },
   {
@@ -204,9 +220,11 @@ export const institutions: Institution[] = [
     description: "Spa and wellness hotel in the Great Forest with meeting rooms and event spaces.",
     image: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Debreceni_Nagyerd%C5%91%2C_sportk%C3%B6zpont_a_magasb%C3%B3l.jpg",
     rating: 4.4,
+    coords: { lat: 47.5614, lng: 21.6189 },
+    address: "Nagyerdei krt. 9-11, 4032 Debrecen",
     buildings: [
-      { id: "b11", name: "Rooms", spaces: [hotelRooms[1], hotelRooms[3], hotelRooms[2]] },
-      { id: "b12", name: "Flats & Apartments", spaces: [hotelFlats[1], hotelFlats[2], hotelFlats[3]] },
+      { id: "b11", name: "Rooms", coords: { lat: 47.5614, lng: 21.6189 }, spaces: [hotelRooms[1], hotelRooms[3], hotelRooms[2]] },
+      { id: "b12", name: "Flats & Apartments", coords: { lat: 47.5614, lng: 21.6189 }, spaces: [hotelFlats[1], hotelFlats[2], hotelFlats[3]] },
     ],
   },
   {
@@ -217,8 +235,10 @@ export const institutions: Institution[] = [
     description: "Indoor sports complex in the heart of Debrecen offering basketball courts, training halls and equipment rental.",
     image: "https://images.unsplash.com/photo-1505666287802-931dc83948e9?w=900",
     rating: 4.7,
+    coords: { lat: 47.5586, lng: 21.6363 },
+    address: "Oláh Gábor u. 5, 4032 Debrecen",
     buildings: [
-      { id: "b13", name: "Main Arena", spaces: [sportsSpaces[3], sportsSpaces[4]] },
+      { id: "b13", name: "Main Arena", coords: { lat: 47.5586, lng: 21.6363 }, spaces: [sportsSpaces[3], sportsSpaces[4]] },
     ],
   },
   {
@@ -229,10 +249,12 @@ export const institutions: Institution[] = [
     description: "Community garden in Debrecen where residents can rent garden plots for growing vegetables, herbs, and flowers. Includes shared tools and a greenhouse.",
     image: "https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=600",
     rating: 4.8,
+    coords: { lat: 47.5430, lng: 21.6280 },
+    address: "Pallagi út, 4032 Debrecen",
     buildings: [
-      { id: "b14", name: "Section A — Vegetable Plots", spaces: [gardenPlots[0], gardenPlots[2], gardenPlots[3]] },
-      { id: "b15", name: "Section B — Herb & Flower Gardens", spaces: [gardenPlots[1], gardenPlots[4]] },
-      { id: "b16", name: "Greenhouse & Facilities", spaces: [gardenPlots[5]] },
+      { id: "b14", name: "Section A — Vegetable Plots", coords: { lat: 47.5430, lng: 21.6280 }, spaces: [gardenPlots[0], gardenPlots[2], gardenPlots[3]] },
+      { id: "b15", name: "Section B — Herb & Flower Gardens", coords: { lat: 47.5432, lng: 21.6285 }, spaces: [gardenPlots[1], gardenPlots[4]] },
+      { id: "b16", name: "Greenhouse & Facilities", coords: { lat: 47.5428, lng: 21.6283 }, spaces: [gardenPlots[5]] },
     ],
   },
   {
@@ -243,10 +265,12 @@ export const institutions: Institution[] = [
     description: "Curated collection of Airbnb listings across Debrecen — from cozy lofts in the city center to family homes near the Great Forest.",
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600",
     rating: 4.7,
+    coords: { lat: 47.5316, lng: 21.6273 },
+    address: "Various locations, Debrecen",
     buildings: [
-      { id: "b17", name: "Downtown Listings", spaces: [airbnbListings[0], airbnbListings[1], airbnbListings[5]] },
-      { id: "b18", name: "Near University", spaces: [airbnbListings[2], airbnbListings[4]] },
-      { id: "b19", name: "Family Homes", spaces: [airbnbListings[3]] },
+      { id: "b17", name: "Downtown Listings", coords: { lat: 47.5316, lng: 21.6273 }, spaces: [airbnbListings[0], airbnbListings[1], airbnbListings[5]] },
+      { id: "b18", name: "Near University", coords: { lat: 47.5495, lng: 21.6250 }, spaces: [airbnbListings[2], airbnbListings[4]] },
+      { id: "b19", name: "Family Homes", coords: { lat: 47.5400, lng: 21.6400 }, spaces: [airbnbListings[3]] },
     ],
   },
 ];
