@@ -82,6 +82,18 @@ const InstitutionDetail = () => {
         </div>
       </div>
 
+      {/* Map */}
+      {mapMarkers.length > 0 && (
+        <div className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MapPin className="h-5 w-5 text-primary" /> {mapTitle}
+          </h2>
+          <InstitutionMap markers={mapMarkers} />
+        </div>
+      )}
+
+
+
       {/* University: campus list first */}
       {hasCampuses && !selectedCampus && (
         <div className="mb-10">
