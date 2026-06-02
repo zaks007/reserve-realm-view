@@ -2,6 +2,7 @@ import { useParams, Link, useSearchParams } from "react-router-dom";
 import { MapPin, Star, Users, DoorOpen, Building2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import InstitutionMap, { MapMarker } from "@/components/InstitutionMap";
 import { getInstitutionById, typeLabelMap, typeBadgeClass } from "@/data/mockData";
 import type { Space } from "@/data/mockData";
 
