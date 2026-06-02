@@ -1,5 +1,10 @@
 export type InstitutionType = "hotel" | "university" | "sports" | "garden" | "airbnb";
 
+export interface Coords {
+  lat: number;
+  lng: number;
+}
+
 export interface Institution {
   id: string;
   name: string;
@@ -8,6 +13,8 @@ export interface Institution {
   description: string;
   image: string;
   rating: number;
+  coords?: Coords;
+  address?: string;
   campuses?: Campus[];
   buildings: Building[];
 }
@@ -15,12 +22,16 @@ export interface Institution {
 export interface Campus {
   id: string;
   name: string;
+  coords?: Coords;
+  address?: string;
   buildings: Building[];
 }
 
 export interface Building {
   id: string;
   name: string;
+  coords?: Coords;
+  address?: string;
   spaces: Space[];
 }
 
