@@ -2,6 +2,7 @@ import { useParams, Link, useSearchParams } from "react-router-dom";
 import { MapPin, Star, Users, DoorOpen, Building2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import InstitutionMap, { MapMarker } from "@/components/InstitutionMap";
 import { getInstitutionById, typeLabelMap, typeBadgeClass } from "@/data/mockData";
 import type { Space } from "@/data/mockData";
 
@@ -23,6 +24,33 @@ const InstitutionDetail = () => {
   const selectedCampus = hasCampuses
     ? institution.campuses!.find((c) => c.id === selectedCampusId)
     : undefined;
+
+  // Build map markers based on the current view
+  let mapMarkers: MapMarker[] = [];
+  let mapTitle = "Location";
+  if (hasCampuses && !selectedCampus) {
+    // University overview — show all campuses
+    mapMarkers = institution.campuses!
+      .filter((c) => c.coords)
+      .map((c) => ({ lat: c.coords!.lat, lng: c.coords!.lng, title: c.name, subtitle: c.address }));
+    mapTitle = "Campuses on the map";
+  } else if (selectedCampus) {
+    // Campus detail — show faculty buildings
+    mapMarkers = selectedCampus.buildings
+      .filter((b) => b.coords)
+      .map((b) => ({ lat: b.coords!.lat, lng: b.coords!.lng, title: b.name, subtitle: b.address }));
+    mapTitle = "Faculty buildings";
+  } else if (institution.coords) {
+    mapMarkers = [{
+      lat: institution.coords.lat,
+      lng: institution.coords.lng,
+      title: institution.name,
+      subtitle: institution.address,
+    }];
+    mapTitle = "Location";
+  }
+
+
 
   return (
     <div className="container py-4">
@@ -53,6 +81,18 @@ const InstitutionDetail = () => {
           <p className="text-foreground/80">{institution.description}</p>
         </div>
       </div>
+
+      {/* Map */}
+      {mapMarkers.length > 0 && (
+        <div className="mb-10">
+          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+            <MapPin className="h-5 w-5 text-primary" /> {mapTitle}
+          </h2>
+          <InstitutionMap markers={mapMarkers} />
+        </div>
+      )}
+
+
 
       {/* University: campus list first */}
       {hasCampuses && !selectedCampus && (
