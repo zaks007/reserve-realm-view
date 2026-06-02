@@ -140,17 +140,7 @@ export const institutions: Institution[] = [
     campuses: [
       {
         id: "c1",
-        name: "Kassai Campus",
-        coords: { lat: 47.5418, lng: 21.6428 },
-        address: "Kassai út 26, 4028 Debrecen",
-        buildings: [
-          { id: "b3", name: "Faculty of Informatics", coords: { lat: 47.5418, lng: 21.6428 }, address: "Kassai út 26", spaces: [uniSpaces[0], uniSpaces[3], uniSpaces[5]] },
-          { id: "b4", name: "Faculty of Engineering", coords: { lat: 47.5447, lng: 21.6512 }, address: "Ótemető u. 2-4", spaces: [uniSpaces[2], uniSpaces[6]] },
-        ],
-      },
-      {
-        id: "c2",
-        name: "Egyetem tér Campus",
+        name: "Main Building (Egyetem tér)",
         coords: { lat: 47.5536, lng: 21.6243 },
         address: "Egyetem tér 1, 4032 Debrecen",
         buildings: [
@@ -159,15 +149,34 @@ export const institutions: Institution[] = [
         ],
       },
       {
-        id: "c3",
-        name: "Medical Campus",
-        coords: { lat: 47.5589, lng: 21.6275 },
-        address: "Nagyerdei krt. 98, 4032 Debrecen",
+        id: "c2",
+        name: "Kassai Campus",
+        coords: { lat: 47.5418, lng: 21.6428 },
+        address: "Kassai út 26, 4028 Debrecen",
         buildings: [
-          { id: "b7", name: "Medical Faculty", coords: { lat: 47.5589, lng: 21.6275 }, address: "Nagyerdei krt. 98", spaces: [uniSpaces[0], uniSpaces[8]] },
+          { id: "b3", name: "Faculty of Informatics", coords: { lat: 47.5418, lng: 21.6428 }, address: "Kassai út 26", spaces: [uniSpaces[0], uniSpaces[3], uniSpaces[5]] },
+        ],
+      },
+      {
+        id: "c3",
+        name: "Agrár Campus (Böszörményi)",
+        coords: { lat: 47.5639, lng: 21.5994 },
+        address: "Böszörményi út 138, 4032 Debrecen",
+        buildings: [
+          { id: "b7", name: "Faculty of Agriculture", coords: { lat: 47.5639, lng: 21.5994 }, address: "Böszörményi út 138", spaces: [uniSpaces[0], uniSpaces[8]] },
+        ],
+      },
+      {
+        id: "c4",
+        name: "Ótemető Campus",
+        coords: { lat: 47.5447, lng: 21.6512 },
+        address: "Ótemető u. 2-4, 4028 Debrecen",
+        buildings: [
+          { id: "b4", name: "Faculty of Engineering", coords: { lat: 47.5447, lng: 21.6512 }, address: "Ótemető u. 2-4", spaces: [uniSpaces[2], uniSpaces[6]] },
         ],
       },
     ],
+
     buildings: [],
   },
   {
