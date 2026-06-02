@@ -49,9 +49,8 @@ const InstitutionDetail = () => {
     }];
     mapTitle = "Location";
   }
-  const selectedCampus = hasCampuses
-    ? institution.campuses!.find((c) => c.id === selectedCampusId)
-    : undefined;
+
+
 
   return (
     <div className="container py-4">
