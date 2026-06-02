@@ -25,6 +25,34 @@ const InstitutionDetail = () => {
     ? institution.campuses!.find((c) => c.id === selectedCampusId)
     : undefined;
 
+  // Build map markers based on the current view
+  let mapMarkers: MapMarker[] = [];
+  let mapTitle = "Location";
+  if (hasCampuses && !selectedCampus) {
+    // University overview — show all campuses
+    mapMarkers = institution.campuses!
+      .filter((c) => c.coords)
+      .map((c) => ({ lat: c.coords!.lat, lng: c.coords!.lng, title: c.name, subtitle: c.address }));
+    mapTitle = "Campuses on the map";
+  } else if (selectedCampus) {
+    // Campus detail — show faculty buildings
+    mapMarkers = selectedCampus.buildings
+      .filter((b) => b.coords)
+      .map((b) => ({ lat: b.coords!.lat, lng: b.coords!.lng, title: b.name, subtitle: b.address }));
+    mapTitle = "Faculty buildings";
+  } else if (institution.coords) {
+    mapMarkers = [{
+      lat: institution.coords.lat,
+      lng: institution.coords.lng,
+      title: institution.name,
+      subtitle: institution.address,
+    }];
+    mapTitle = "Location";
+  }
+  const selectedCampus = hasCampuses
+    ? institution.campuses!.find((c) => c.id === selectedCampusId)
+    : undefined;
+
   return (
     <div className="container py-4">
       <Breadcrumbs items={[
