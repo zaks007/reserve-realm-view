@@ -5,16 +5,19 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import InstitutionCard from "@/components/InstitutionCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { institutions, InstitutionType, typeLabelMap } from "@/data/mockData";
+import { institutions as baseInstitutions, InstitutionType, typeLabelMap } from "@/data/mockData";
+import { useInstitutions } from "@/contexts/InstitutionsContext";
 
 const types: (InstitutionType | "all")[] = ["all", "hotel", "university", "sports", "garden", "airbnb"];
 
-const allFeatures = Array.from(new Set(institutions.flatMap(i =>
+// Static derived data (features / cities) is fine off the base mock data —
+// admin overrides only tweak labels, not the structural taxonomy.
+const allFeatures = Array.from(new Set(baseInstitutions.flatMap(i =>
   (i.campuses?.flatMap(c => c.buildings.flatMap(b => b.spaces.flatMap(s => s.features))) || [])
     .concat(i.buildings.flatMap(b => b.spaces.flatMap(s => s.features)))
 ))).sort();
 
-const cities = Array.from(new Set(institutions.map(i => i.city))).sort();
+const cities = Array.from(new Set(baseInstitutions.map(i => i.city))).sort();
 
 const InstitutionList = () => {
   const [searchParams] = useSearchParams();
