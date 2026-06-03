@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import InstitutionCard from "@/components/InstitutionCard";
-import { institutions, InstitutionType } from "@/data/mockData";
+import { institutions as baseInstitutions, InstitutionType } from "@/data/mockData";
+import { useInstitutions } from "@/contexts/InstitutionsContext";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const typeFilters: { type: InstitutionType | "all"; label: string; icon: React.ElementType }[] = [
