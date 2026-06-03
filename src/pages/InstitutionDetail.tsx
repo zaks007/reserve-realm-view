@@ -3,13 +3,15 @@ import { MapPin, Star, Users, DoorOpen, Building2, ArrowLeft } from "lucide-reac
 import { Button } from "@/components/ui/button";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import InstitutionMap, { MapMarker } from "@/components/InstitutionMap";
-import { getInstitutionById, typeLabelMap, typeBadgeClass } from "@/data/mockData";
+import { typeLabelMap, typeBadgeClass } from "@/data/mockData";
 import type { Space } from "@/data/mockData";
+import { useInstitutions } from "@/contexts/InstitutionsContext";
 
 const InstitutionDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [searchParams] = useSearchParams();
-  const institution = getInstitutionById(id || "");
+  const { getById } = useInstitutions();
+  const institution = getById(id || "");
 
   if (!institution) {
     return (

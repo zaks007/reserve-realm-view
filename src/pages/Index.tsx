@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import InstitutionCard from "@/components/InstitutionCard";
-import { institutions, InstitutionType } from "@/data/mockData";
+import { institutions as baseInstitutions, InstitutionType } from "@/data/mockData";
+import { useInstitutions } from "@/contexts/InstitutionsContext";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const typeFilters: { type: InstitutionType | "all"; label: string; icon: React.ElementType }[] = [
@@ -20,13 +21,14 @@ const Index = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [activeType, setActiveType] = useState<InstitutionType | "all">("all");
+  const { institutions } = useInstitutions();
 
   // Featured: curated mix so the homepage showcases every booking type.
   // Order: hotel, university, sport, sport, garden, airbnb.
   const featuredIds = ["inst-1", "inst-2", "inst-3", "inst-9", "inst-7", "inst-8"];
   const featured = featuredIds
     .map((id) => institutions.find((i) => i.id === id))
-    .filter((i): i is typeof institutions[number] => Boolean(i));
+    .filter((i): i is typeof baseInstitutions[number] => Boolean(i));
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

@@ -5,19 +5,23 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import InstitutionCard from "@/components/InstitutionCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { institutions, InstitutionType, typeLabelMap } from "@/data/mockData";
+import { institutions as baseInstitutions, InstitutionType, typeLabelMap } from "@/data/mockData";
+import { useInstitutions } from "@/contexts/InstitutionsContext";
 
 const types: (InstitutionType | "all")[] = ["all", "hotel", "university", "sports", "garden", "airbnb"];
 
-const allFeatures = Array.from(new Set(institutions.flatMap(i =>
+// Static derived data (features / cities) is fine off the base mock data —
+// admin overrides only tweak labels, not the structural taxonomy.
+const allFeatures = Array.from(new Set(baseInstitutions.flatMap(i =>
   (i.campuses?.flatMap(c => c.buildings.flatMap(b => b.spaces.flatMap(s => s.features))) || [])
     .concat(i.buildings.flatMap(b => b.spaces.flatMap(s => s.features)))
 ))).sort();
 
-const cities = Array.from(new Set(institutions.map(i => i.city))).sort();
+const cities = Array.from(new Set(baseInstitutions.map(i => i.city))).sort();
 
 const InstitutionList = () => {
   const [searchParams] = useSearchParams();
+  const { institutions } = useInstitutions();
   const [query, setQuery] = useState(searchParams.get("q") || "");
   const [typeFilter, setTypeFilter] = useState<InstitutionType | "all">((searchParams.get("type") as any) || "all");
   const [city, setCity] = useState<string>("all");
@@ -38,7 +42,7 @@ const InstitutionList = () => {
       if (feature !== "all" && !allSpaces.some(s => s.features.includes(feature))) return false;
       return true;
     });
-  }, [query, typeFilter, city, minCapacity, feature]);
+  }, [institutions, query, typeFilter, city, minCapacity, feature]);
 
   const reset = () => { setQuery(""); setTypeFilter("all"); setCity("all"); setMinCapacity(""); setFeature("all"); };
   const hasFilters = query || typeFilter !== "all" || city !== "all" || minCapacity || feature !== "all";

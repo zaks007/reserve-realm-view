@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import DevRoleSwitcher from "@/components/DevRoleSwitcher";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { BookingsProvider } from "@/contexts/BookingsContext";
+import { InstitutionsProvider } from "@/contexts/InstitutionsContext";
 import Index from "./pages/Index";
 import InstitutionList from "./pages/InstitutionList";
 import InstitutionDetail from "./pages/InstitutionDetail";
@@ -33,8 +34,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <BookingsProvider>
-            <Navbar />
+          <InstitutionsProvider>
+            <BookingsProvider>
+              <Navbar />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/institutions" element={<InstitutionList />} />
@@ -53,8 +55,9 @@ const App = () => (
               <Route path="/auth/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <DevRoleSwitcher />
-          </BookingsProvider>
+              <DevRoleSwitcher />
+            </BookingsProvider>
+          </InstitutionsProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
