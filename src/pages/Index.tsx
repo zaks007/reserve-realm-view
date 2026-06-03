@@ -21,7 +21,12 @@ const Index = () => {
   const [search, setSearch] = useState("");
   const [activeType, setActiveType] = useState<InstitutionType | "all">("all");
 
-  const featured = institutions.slice(0, 6);
+  // Featured: curated mix so the homepage showcases every booking type.
+  // Order: hotel, university, sport, sport, garden, airbnb.
+  const featuredIds = ["inst-1", "inst-2", "inst-3", "inst-9", "inst-7", "inst-8"];
+  const featured = featuredIds
+    .map((id) => institutions.find((i) => i.id === id))
+    .filter((i): i is typeof institutions[number] => Boolean(i));
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
