@@ -114,14 +114,14 @@ const airbnbListings: Space[] = [
 export const institutions: Institution[] = [
   {
     id: "inst-1",
-    name: "Hotel Lycium Debrecen",
+    name: "Hotel Divinus Debrecen",
     type: "hotel",
     city: "Debrecen",
-    description: "Modern 4-star hotel near the Great Forest with conference and event facilities.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Hunyadi_J%C3%A1nos_Stra%C3%9Fe_1-3%2C_2022_Debrecen.jpg/960px-Hunyadi_J%C3%A1nos_Stra%C3%9Fe_1-3%2C_2022_Debrecen.jpg",
-    rating: 4.6,
-    coords: { lat: 47.5316, lng: 21.6242 },
-    address: "Hunyadi János u. 1-3, 4025 Debrecen",
+    description: "Elegant 5-star hotel in the Great Forest with spa, wellness and conference facilities.",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+    rating: 4.7,
+    coords: { lat: 47.5598, lng: 21.6310 },
+    address: "Nagyerdei körút 1, 4032 Debrecen",
     buildings: [
       { id: "b1", name: "Rooms", coords: { lat: 47.5316, lng: 21.6242 }, spaces: [hotelRooms[0], hotelRooms[1], hotelRooms[2], hotelRooms[3], hotelRooms[4]] },
       { id: "b2", name: "Flats & Suites", coords: { lat: 47.5316, lng: 21.6242 }, spaces: [hotelFlats[0], hotelFlats[1], hotelFlats[3]] },
