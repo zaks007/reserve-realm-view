@@ -55,8 +55,9 @@ const App = () => (
               <Route path="/auth/login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <DevRoleSwitcher />
-          </BookingsProvider>
+              <DevRoleSwitcher />
+            </BookingsProvider>
+          </InstitutionsProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
