@@ -34,8 +34,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <BookingsProvider>
-            <Navbar />
+          <InstitutionsProvider>
+            <BookingsProvider>
+              <Navbar />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/institutions" element={<InstitutionList />} />
