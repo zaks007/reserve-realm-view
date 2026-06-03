@@ -42,7 +42,7 @@ const InstitutionList = () => {
       if (feature !== "all" && !allSpaces.some(s => s.features.includes(feature))) return false;
       return true;
     });
-  }, [query, typeFilter, city, minCapacity, feature]);
+  }, [institutions, query, typeFilter, city, minCapacity, feature]);
 
   const reset = () => { setQuery(""); setTypeFilter("all"); setCity("all"); setMinCapacity(""); setFeature("all"); };
   const hasFilters = query || typeFilter !== "all" || city !== "all" || minCapacity || feature !== "all";
