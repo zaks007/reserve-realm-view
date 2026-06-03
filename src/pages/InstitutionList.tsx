@@ -21,6 +21,7 @@ const cities = Array.from(new Set(baseInstitutions.map(i => i.city))).sort();
 
 const InstitutionList = () => {
   const [searchParams] = useSearchParams();
+  const { institutions } = useInstitutions();
   const [query, setQuery] = useState(searchParams.get("q") || "");
   const [typeFilter, setTypeFilter] = useState<InstitutionType | "all">((searchParams.get("type") as any) || "all");
   const [city, setCity] = useState<string>("all");
