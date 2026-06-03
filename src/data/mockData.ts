@@ -118,7 +118,7 @@ export const institutions: Institution[] = [
     type: "hotel",
     city: "Debrecen",
     description: "Elegant 5-star hotel in the Great Forest with spa, wellness and conference facilities.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
+    image: "https://hoteldivinus.hu/wp-content/uploads/2023/08/hotel-divinus-superior-debrecen.webp",
     rating: 4.7,
     coords: { lat: 47.5598, lng: 21.6310 },
     address: "Nagyerdei körút 1, 4032 Debrecen",
