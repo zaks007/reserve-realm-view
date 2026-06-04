@@ -178,38 +178,37 @@ const InstitutionDetail = () => {
   );
 };
 
-const SpaceCard = ({ space }: { space: Space }) => (
-  <div className="bg-card rounded-lg border overflow-hidden card-hover">
-    <div className="aspect-[16/10] overflow-hidden">
-      <img src={space.image} alt={space.name} className="w-full h-full object-cover" />
-    </div>
-    <div className="p-4">
-      <h4 className="font-semibold mb-1">{space.name}</h4>
-      <p className="text-sm text-muted-foreground flex items-center gap-1 mb-2">
-        <Users className="h-3.5 w-3.5" /> Capacity: {space.capacity}
-      </p>
-      <div className="flex flex-wrap gap-1.5 mb-3">
-        {space.features.slice(0, 3).map((f) => (
-          <span key={f} className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">
-            {f}
+const SpaceCard = ({ space }: { space: Space }) => {
+  const unitShort = space.priceUnit === "night" ? "night" : space.priceUnit === "month" ? "mo" : "hr";
+  return (
+    <div className="bg-card rounded-lg border overflow-hidden card-hover">
+      <div className="aspect-[16/10] overflow-hidden">
+        <img src={space.image} alt={space.name} className="w-full h-full object-cover" />
+      </div>
+      <div className="p-4">
+        <h4 className="font-semibold mb-1">{space.name}</h4>
+        <p className="text-sm text-muted-foreground flex items-center gap-1 mb-2">
+          <Users className="h-3.5 w-3.5" /> Capacity: {space.capacity}
+        </p>
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {space.features.slice(0, 3).map((f) => (
+            <span key={f} className="text-xs bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full">{f}</span>
+          ))}
+          {space.features.length > 3 && (
+            <span className="text-xs text-muted-foreground">+{space.features.length - 3}</span>
+          )}
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="font-bold text-primary">
+            {space.pricePerHour === 0 ? "Free" : `${space.pricePerHour.toLocaleString()} HUF/${unitShort}`}
           </span>
-        ))}
-        {space.features.length > 3 && (
-          <span className="text-xs text-muted-foreground">+{space.features.length - 3}</span>
-        )}
-      </div>
-      <div className="flex items-center justify-between">
-        <span className="font-bold text-primary">
-          {space.pricePerHour === 0 ? "Free" : `${space.pricePerHour.toLocaleString()} HUF/hr`}
-        </span>
-        <Button size="sm" asChild disabled={!space.available}>
-          <Link to={`/spaces/${space.id}`}>
-            {space.available ? "Book Now" : "Unavailable"}
-          </Link>
-        </Button>
+          <Button size="sm" asChild disabled={!space.available}>
+            <Link to={`/spaces/${space.id}`}>{space.available ? "Book Now" : "Unavailable"}</Link>
+          </Button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default InstitutionDetail;

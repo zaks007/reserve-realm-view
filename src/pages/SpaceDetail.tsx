@@ -1,12 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Users, Check, Clock, DollarSign } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RoomAvailabilityCalendar from "@/components/RoomAvailabilityCalendar";
-import { getSpaceById } from "@/data/mockData";
+import { getSpaceById, defaultPriceUnit, priceUnitLabel, priceUnitShort, PriceUnit } from "@/data/mockData";
 import { toast } from "@/hooks/use-toast";
 import { useAuth, isUniversityUserRole } from "@/contexts/AuthContext";
 import { useBookings } from "@/contexts/BookingsContext";
@@ -20,6 +20,7 @@ const SpaceDetail = () => {
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [units, setUnits] = useState<number>(1); // # of nights/months
 
   if (!result) {
     return <div className="container py-20 text-center"><p className="text-lg text-muted-foreground">Space not found.</p></div>;
@@ -30,7 +31,20 @@ const SpaceDetail = () => {
   const isUniSpace = institution.type === "university";
   const isInternalUni = !!user && isUniversityUserRole(user.role);
   const isFreeAndInstant = isUniSpace && isInternalUni;
+  const unit: PriceUnit = space.priceUnit || defaultPriceUnit[institution.type];
   const effectivePrice = isFreeAndInstant ? 0 : space.pricePerHour;
+
+  const totalPrice = useMemo(() => {
+    if (effectivePrice === 0) return 0;
+    if (unit === "hour") {
+      if (!startTime || !endTime || startTime >= endTime) return 0;
+      const [sh, sm] = startTime.split(":").map(Number);
+      const [eh, em] = endTime.split(":").map(Number);
+      const hours = (eh + em / 60) - (sh + sm / 60);
+      return Math.max(0, Math.round(hours * effectivePrice));
+    }
+    return effectivePrice * Math.max(1, units);
+  }, [effectivePrice, unit, startTime, endTime, units]);
 
   const breadcrumbs = [
     { label: "Explore", to: "/institutions" },
@@ -46,29 +60,49 @@ const SpaceDetail = () => {
       toast({ title: "Please log in to book", variant: "destructive" });
       navigate("/auth/login"); return;
     }
-    if (!date || !startTime || !endTime) {
-      toast({ title: "Please fill in date, start and end time", variant: "destructive" }); return;
+    if (!date) {
+      toast({ title: "Please choose a date", variant: "destructive" }); return;
     }
-    if (startTime >= endTime) {
-      toast({ title: "End time must be after start time", variant: "destructive" }); return;
+    let bookStart = "00:00";
+    let bookEnd = "23:59";
+    if (unit === "hour") {
+      if (!startTime || !endTime) {
+        toast({ title: "Please fill in start and end time", variant: "destructive" }); return;
+      }
+      if (startTime >= endTime) {
+        toast({ title: "End time must be after start time", variant: "destructive" }); return;
+      }
+      bookStart = startTime; bookEnd = endTime;
+    } else {
+      if (units < 1) {
+        toast({ title: `Please enter at least 1 ${unit}`, variant: "destructive" }); return;
+      }
     }
+    const durationLabel =
+      unit === "hour" ? `${bookStart}–${bookEnd}` :
+      unit === "night" ? `${units} night${units > 1 ? "s" : ""}` :
+      `${units} month${units > 1 ? "s" : ""}`;
+
     const res = createBooking({
-      spaceId: space.id, spaceName: space.name,
+      spaceId: space.id, spaceName: `${space.name} · ${durationLabel}`,
       institutionId: institution.id, institutionName: institution.name,
       buildingName: building.name, campusId: campus?.id,
-      date, startTime, endTime,
+      date, startTime: bookStart, endTime: bookEnd,
       capacity: space.capacity, userEmail: user.email,
     }, { autoApprove: isFreeAndInstant, free: isFreeAndInstant });
     if (!res.ok) {
       toast({ title: "Booking conflict", description: res.error, variant: "destructive" }); return;
     }
-    if (isFreeAndInstant) {
-      toast({ title: "Booking confirmed!", description: "Free instant booking for university users." });
-    } else {
-      toast({ title: "Booking submitted!", description: "Your request is now pending approval." });
-    }
+    toast({
+      title: isFreeAndInstant ? "Booking confirmed!" : "Booking submitted!",
+      description: isFreeAndInstant ? "Free instant booking for university users." : "Your request is now pending approval.",
+    });
     navigate("/my-bookings");
   };
+
+  const priceLabel = effectivePrice === 0
+    ? "Free"
+    : `${effectivePrice.toLocaleString()} HUF / ${priceUnitLabel[unit]}`;
 
   return (
     <div className="container py-4">
@@ -89,7 +123,7 @@ const SpaceDetail = () => {
             </div>
             <div className="bg-card border rounded-lg p-4 text-center">
               <DollarSign className="h-5 w-5 mx-auto mb-2 text-primary" />
-              <p className="text-sm text-muted-foreground">Price/Hour</p>
+              <p className="text-sm text-muted-foreground">Price / {priceUnitLabel[unit]}</p>
               <p className="font-bold text-lg">
                 {effectivePrice === 0 ? "Free" : `${effectivePrice.toLocaleString()} HUF`}
               </p>
@@ -121,7 +155,7 @@ const SpaceDetail = () => {
           <div className="bg-card border rounded-xl p-6 sticky top-24">
             <h3 className="text-xl font-bold mb-1">Reserve This Space</h3>
             <p className="text-sm text-muted-foreground mb-3">
-              {effectivePrice === 0 ? "Free" : `${effectivePrice.toLocaleString()} HUF/hour`} · {institution.name}
+              {priceLabel} · {institution.name}
             </p>
             {isFreeAndInstant && (
               <div className="mb-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-700">
@@ -135,19 +169,44 @@ const SpaceDetail = () => {
             )}
             <form onSubmit={handleReserve} className="space-y-4">
               <div>
-                <Label>Date</Label>
+                <Label>{unit === "hour" ? "Date" : unit === "night" ? "Check-in date" : "Start date"}</Label>
                 <Input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="mt-1" />
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <Label>Start</Label>
-                  <Input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="mt-1" />
+
+              {unit === "hour" && (
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <Label>Start</Label>
+                    <Input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="mt-1" />
+                  </div>
+                  <div>
+                    <Label>End</Label>
+                    <Input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="mt-1" />
+                  </div>
                 </div>
+              )}
+
+              {unit !== "hour" && (
                 <div>
-                  <Label>End</Label>
-                  <Input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="mt-1" />
+                  <Label>Duration ({unit === "night" ? "nights" : "months"})</Label>
+                  <Input
+                    type="number"
+                    min={1}
+                    max={unit === "night" ? 30 : 24}
+                    value={units}
+                    onChange={(e) => setUnits(parseInt(e.target.value || "1", 10))}
+                    className="mt-1"
+                  />
                 </div>
-              </div>
+              )}
+
+              {effectivePrice > 0 && totalPrice > 0 && (
+                <div className="rounded-lg bg-secondary/60 px-3 py-2 text-sm flex items-center justify-between">
+                  <span className="text-muted-foreground">Estimated total</span>
+                  <span className="font-bold">{totalPrice.toLocaleString()} HUF</span>
+                </div>
+              )}
+
               <Button type="submit" className="w-full" size="lg" disabled={!space.available}>
                 {!space.available ? "Currently Unavailable" : isFreeAndInstant ? "Book Instantly (Free)" : "Submit Booking Request"}
               </Button>

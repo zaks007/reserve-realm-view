@@ -120,27 +120,82 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-primary text-primary-foreground py-16">
-        <div className="container grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { value: "50+", label: "Spaces" },
-            { value: "15+", label: "Institutions" },
-            { value: "2K+", label: "Bookings" },
-            { value: "1", label: "City — Debrecen" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="text-3xl md:text-4xl font-extrabold mb-1">{s.value}</div>
-              <div className="text-primary-foreground/70 text-sm">{s.label}</div>
+      {/* Trust band */}
+      <section className="bg-primary text-primary-foreground py-14">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-primary-foreground/60 mb-2">Built in Debrecen</p>
+              <h3 className="text-2xl md:text-3xl font-bold leading-tight mb-3">
+                One reservation system for every kind of space in the city.
+              </h3>
+              <p className="text-primary-foreground/75 text-sm leading-relaxed">
+                From a seminar room at UD to a weekend at Hotel Divinus, a turf pitch for Tuesday night
+                football or a raised bed in the community garden — bookings, approvals and pricing all
+                in one place.
+              </p>
             </div>
-          ))}
+            <div className="grid grid-cols-2 gap-x-6 gap-y-6 md:col-span-2 md:grid-cols-4">
+              {[
+                { value: "9", label: "Institutions live" },
+                { value: "50+", label: "Bookable spaces" },
+                { value: "4", label: "UD campuses" },
+                { value: "HUF", label: "Local pricing" },
+              ].map((s) => (
+                <div key={s.label} className="border-l border-primary-foreground/20 pl-4">
+                  <div className="text-3xl md:text-4xl font-bold leading-none mb-2">{s.value}</div>
+                  <div className="text-primary-foreground/65 text-xs uppercase tracking-wider">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t py-8">
-        <div className="container text-center text-sm text-muted-foreground">
-          © 2026 ReserveHub. All rights reserved. — Thesis UI Prototype
+      <footer className="bg-background border-t">
+        <div className="container py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+          <div className="col-span-2">
+            <Link to="/" className="inline-flex items-center gap-2 mb-3">
+              <span className="font-serif text-xl font-bold tracking-tight">ReserveHub</span>
+              <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground border px-1.5 py-0.5 rounded">
+                Debrecen
+              </span>
+            </Link>
+            <p className="text-muted-foreground max-w-sm leading-relaxed">
+              A single booking platform for hotels, the University of Debrecen, sports facilities,
+              community gardens and Airbnb stays across the city.
+            </p>
+          </div>
+          <div>
+            <p className="font-semibold mb-3">Explore</p>
+            <ul className="space-y-2 text-muted-foreground">
+              <li><Link to="/institutions?type=hotel" className="hover:text-foreground">Hotels</Link></li>
+              <li><Link to="/institutions?type=university" className="hover:text-foreground">University</Link></li>
+              <li><Link to="/institutions?type=sports" className="hover:text-foreground">Sports</Link></li>
+              <li><Link to="/institutions?type=garden" className="hover:text-foreground">Gardens</Link></li>
+              <li><Link to="/institutions?type=airbnb" className="hover:text-foreground">Airbnb</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-semibold mb-3">Account</p>
+            <ul className="space-y-2 text-muted-foreground">
+              <li><Link to="/auth/login" className="hover:text-foreground">Log in</Link></li>
+              <li><Link to="/auth/signup" className="hover:text-foreground">Create account</Link></li>
+              <li><Link to="/my-bookings" className="hover:text-foreground">My bookings</Link></li>
+              <li><Link to="/auth/signup/institution" className="hover:text-foreground">List your venue</Link></li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t">
+          <div className="container py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
+            <p>© 2026 ReserveHub · A thesis project by Zakaria Umar · University of Debrecen</p>
+            <p className="flex items-center gap-3">
+              <span>Made in Debrecen 🇭🇺</span>
+              <span className="hidden md:inline">·</span>
+              <span>UI prototype — data is illustrative</span>
+            </p>
+          </div>
         </div>
       </footer>
     </div>
