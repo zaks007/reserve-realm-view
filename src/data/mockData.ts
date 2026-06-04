@@ -1,3 +1,5 @@
+import hotelDivinusAsset from "@/assets/hotel-divinus.png.asset.json";
+
 export type InstitutionType = "hotel" | "university" | "sports" | "garden" | "airbnb";
 
 export interface Coords {
@@ -127,8 +129,6 @@ const airbnbListings: Space[] = [
   { id: "ab5", name: "Stylish Flat near University", capacity: 3, image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600", features: ["WiFi", "Kitchen", "Workspace", "Washer"], pricePerHour: 23000, priceUnit: "night", available: false },
   { id: "ab6", name: "Luxury Penthouse Downtown", capacity: 4, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600", features: ["Rooftop Terrace", "Full Kitchen", "WiFi", "Premium View"], pricePerHour: 72000, priceUnit: "night", available: true },
 ];
-
-import hotelDivinusAsset from "@/assets/hotel-divinus.png.asset.json";
 
 export const institutions: Institution[] = [
   {
