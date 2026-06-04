@@ -35,15 +35,32 @@ export interface Building {
   spaces: Space[];
 }
 
+export type PriceUnit = "hour" | "night" | "month";
+
 export interface Space {
   id: string;
   name: string;
   capacity: number;
   image: string;
   features: string[];
+  /** Price in HUF expressed per `priceUnit` (hour / night / month). Field kept as
+   *  `pricePerHour` for backwards compatibility — read alongside `priceUnit`. */
   pricePerHour: number;
+  priceUnit?: PriceUnit;
   available: boolean;
 }
+
+/** Default booking unit per institution type — used when a Space has no explicit unit. */
+export const defaultPriceUnit: Record<InstitutionType, PriceUnit> = {
+  hotel: "night",
+  airbnb: "night",
+  garden: "month",
+  sports: "hour",
+  university: "hour",
+};
+
+export const priceUnitLabel: Record<PriceUnit, string> = { hour: "hour", night: "night", month: "month" };
+export const priceUnitShort: Record<PriceUnit, string> = { hour: "hr", night: "night", month: "mo" };
 
 export interface Booking {
   id: string;
