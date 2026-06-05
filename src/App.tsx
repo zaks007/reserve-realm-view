@@ -8,6 +8,9 @@ import DevRoleSwitcher from "@/components/DevRoleSwitcher";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { BookingsProvider } from "@/contexts/BookingsContext";
 import { InstitutionsProvider } from "@/contexts/InstitutionsContext";
+import { PaymentMethodsProvider } from "@/contexts/PaymentMethodsContext";
+import AccountSettings from "./pages/AccountSettings";
+
 import Index from "./pages/Index";
 import InstitutionList from "./pages/InstitutionList";
 import InstitutionDetail from "./pages/InstitutionDetail";
@@ -36,9 +39,12 @@ const App = () => (
         <AuthProvider>
           <InstitutionsProvider>
             <BookingsProvider>
+              <PaymentMethodsProvider>
               <Navbar />
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/account" element={<AccountSettings />} />
+
               <Route path="/institutions" element={<InstitutionList />} />
               <Route path="/institutions/:id" element={<InstitutionDetail />} />
               <Route path="/spaces/:spaceId" element={<SpaceDetail />} />
@@ -56,8 +62,10 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
               <DevRoleSwitcher />
+              </PaymentMethodsProvider>
             </BookingsProvider>
           </InstitutionsProvider>
+
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
