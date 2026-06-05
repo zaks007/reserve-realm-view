@@ -78,7 +78,9 @@ const Navbar = () => {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => navigate("/my-bookings")}><CalendarDays className="h-4 w-4 mr-2" /> My Bookings</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate("/account")}><UserIcon className="h-4 w-4 mr-2" /> Account settings</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => { logout(); navigate("/"); }}><LogOut className="h-4 w-4 mr-2" /> Log out</DropdownMenuItem>
+
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
