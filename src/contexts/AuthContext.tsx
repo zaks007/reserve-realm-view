@@ -50,7 +50,9 @@ interface AuthContextValue {
   requests: InstitutionRequest[];
   approveRequest: (id: string) => void;
   rejectRequest: (id: string, reason?: string) => void;
+  updateProfile: (patch: Partial<Pick<SimUser, "name" | "email">>) => void;
 }
+
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
@@ -216,13 +218,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setRequests(prev => prev.map(r => r.id === id ? { ...r, status: "rejected", rejectionReason: reason } : r));
   };
 
+  const updateProfile: AuthContextValue["updateProfile"] = (patch) => {
+    setUser(prev => prev ? { ...prev, ...patch } : prev);
+  };
+
   return (
     <AuthContext.Provider value={{
       user, superAdminEmails, pendingCode,
       signupUser, signupInstitution, signupSuperAdmin, verifyCode, login, logout, switchRole,
       addSuperAdminEmail, removeSuperAdminEmail,
       requests, approveRequest, rejectRequest,
+      updateProfile,
     }}>
+
       {children}
     </AuthContext.Provider>
   );
