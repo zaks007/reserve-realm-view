@@ -50,7 +50,9 @@ interface AuthContextValue {
   requests: InstitutionRequest[];
   approveRequest: (id: string) => void;
   rejectRequest: (id: string, reason?: string) => void;
+  updateProfile: (patch: Partial<Pick<SimUser, "name" | "email">>) => void;
 }
+
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
