@@ -54,7 +54,7 @@ const Verify = () => {
               </InputOTPGroup>
             </InputOTP>
           </div>
-          <Button type="submit" className="w-full" disabled={code.length !== 6}>Verify</Button>
+          <Button type="submit" className="w-full" disabled={code.length !== 6 || submitting}>{submitting ? "Verifying…" : "Verify"}</Button>
         </form>
       </div>
     </div>
