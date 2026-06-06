@@ -20,14 +20,19 @@ const Verify = () => {
     );
   }
 
-  const submit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (code.length !== 6) { toast({ title: "Enter the 6-digit code", variant: "destructive" }); return; }
-    if (verifyCode(code)) {
+    setSubmitting(true);
+    const ok = await verifyCode(code);
+    setSubmitting(false);
+    if (ok) {
       toast({ title: "Verified!", description: pendingCode.flow === "institution" ? "Your request is now pending Super Admin approval." : "Welcome to ReserveHub!" });
       navigate("/");
     } else {
-      toast({ title: "Invalid code", variant: "destructive" });
+      toast({ title: "Invalid or expired code", variant: "destructive" });
     }
   };
 
@@ -41,9 +46,6 @@ const Verify = () => {
         <p className="text-sm text-muted-foreground mb-6">
           We sent a 6-digit code to <span className="font-medium text-foreground">{pendingCode.email}</span>
         </p>
-        <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 mb-6 text-sm">
-          <span className="font-semibold">Demo code:</span> <span className="font-mono text-lg tracking-wider">{pendingCode.code}</span>
-        </div>
         <form onSubmit={submit} className="space-y-4">
           <div className="flex justify-center">
             <InputOTP maxLength={6} value={code} onChange={setCode}>
