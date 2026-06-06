@@ -13,12 +13,16 @@ const SignupUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !password) { toast({ title: "Fill in all fields", variant: "destructive" }); return; }
-    const code = signupUser(email, name, password);
-    toast({ title: "Verification code sent", description: `Demo code: ${code}` });
-    navigate("/auth/verify");
+    if (!name || !email) { toast({ title: "Name and email are required", variant: "destructive" }); return; }
+    try {
+      await signupUser(email, name, password);
+      toast({ title: "Check your email", description: `We sent a 6-digit code to ${email}.` });
+      navigate("/auth/verify");
+    } catch (err: any) {
+      toast({ title: "Could not send code", description: err?.message ?? "Try again", variant: "destructive" });
+    }
   };
 
   return (
