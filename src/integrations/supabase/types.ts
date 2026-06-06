@@ -14,16 +14,226 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          created_at: string
+          end_at: string
+          id: string
+          notes: string | null
+          space_id: string
+          start_at: string
+          status: Database["public"]["Enums"]["booking_status"]
+          total_price: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          end_at: string
+          id?: string
+          notes?: string | null
+          space_id: string
+          start_at: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          total_price?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          end_at?: string
+          id?: string
+          notes?: string | null
+          space_id?: string
+          start_at?: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          total_price?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_space_id_fkey"
+            columns: ["space_id"]
+            isOneToOne: false
+            referencedRelation: "spaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      institutions: {
+        Row: {
+          address: string
+          amenities: string[] | null
+          campus: string | null
+          city: string
+          contact_email: string | null
+          contact_phone: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          image_url: string | null
+          name: string
+          rating: number | null
+          type: Database["public"]["Enums"]["institution_type"]
+          updated_at: string
+        }
+        Insert: {
+          address: string
+          amenities?: string[] | null
+          campus?: string | null
+          city?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+          rating?: number | null
+          type: Database["public"]["Enums"]["institution_type"]
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          amenities?: string[] | null
+          campus?: string | null
+          city?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+          rating?: number | null
+          type?: Database["public"]["Enums"]["institution_type"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          id: string
+          name?: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      spaces: {
+        Row: {
+          amenities: string[] | null
+          capacity: number
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          institution_id: string
+          is_active: boolean
+          name: string
+          price: number
+          price_unit: Database["public"]["Enums"]["price_unit"]
+          updated_at: string
+        }
+        Insert: {
+          amenities?: string[] | null
+          capacity?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          institution_id: string
+          is_active?: boolean
+          name: string
+          price?: number
+          price_unit?: Database["public"]["Enums"]["price_unit"]
+          updated_at?: string
+        }
+        Update: {
+          amenities?: string[] | null
+          capacity?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          institution_id?: string
+          is_active?: boolean
+          name?: string
+          price?: number
+          price_unit?: Database["public"]["Enums"]["price_unit"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "spaces_institution_id_fkey"
+            columns: ["institution_id"]
+            isOneToOne: false
+            referencedRelation: "institutions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "super_admin" | "institution_admin" | "staff" | "user"
+      booking_status: "pending" | "confirmed" | "cancelled" | "completed"
+      institution_type: "hotel" | "garden" | "sports" | "university" | "airbnb"
+      price_unit: "hour" | "night" | "month"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +360,11 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["super_admin", "institution_admin", "staff", "user"],
+      booking_status: ["pending", "confirmed", "cancelled", "completed"],
+      institution_type: ["hotel", "garden", "sports", "university", "airbnb"],
+      price_unit: ["hour", "night", "month"],
+    },
   },
 } as const
