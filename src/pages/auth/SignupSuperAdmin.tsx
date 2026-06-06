@@ -14,14 +14,14 @@ const SignupSuperAdmin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = signupSuperAdmin(email, name, password);
-    if (typeof result === "object" && "error" in result) {
-      toast({ title: "Not authorized", description: result.error, variant: "destructive" });
+    const result = await signupSuperAdmin(email, name, password);
+    if (typeof result === "object" && result !== null && "error" in result) {
+      toast({ title: "Not authorized", description: String((result as { error: string }).error), variant: "destructive" });
       return;
     }
-    toast({ title: "Verification code sent", description: `Demo code: ${result}` });
+    toast({ title: "Verification code sent", description: `Check ${email} for your 6-digit code.` });
     navigate("/auth/verify");
   };
 

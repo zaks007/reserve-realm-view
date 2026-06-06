@@ -22,18 +22,22 @@ const SignupInstitution = () => {
 
   const set = (k: keyof typeof form, v: string) => setForm(p => ({ ...p, [k]: v }));
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.contactEmail || !form.description || !form.adminName || !form.password) {
+    if (!form.name || !form.contactEmail || !form.description || !form.adminName) {
       toast({ title: "Fill in all required fields", variant: "destructive" }); return;
     }
-    const code = signupInstitution(
-      { name: form.name, type: form.type, city: form.city, contactEmail: form.contactEmail, description: form.description, website: form.website || undefined },
-      form.password,
-      form.adminName,
-    );
-    toast({ title: "Request submitted", description: `Demo verification code: ${code}` });
-    navigate("/auth/verify");
+    try {
+      await signupInstitution(
+        { name: form.name, type: form.type, city: form.city, contactEmail: form.contactEmail, description: form.description, website: form.website || undefined },
+        form.password,
+        form.adminName,
+      );
+      toast({ title: "Request submitted", description: `Check ${form.contactEmail} for your 6-digit verification code.` });
+      navigate("/auth/verify");
+    } catch (err: any) {
+      toast({ title: "Could not send code", description: err?.message ?? "Try again", variant: "destructive" });
+    }
   };
 
   return (
