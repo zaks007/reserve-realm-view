@@ -64,6 +64,9 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
+// Password chosen at signup, kept in memory only (never persisted) until the email code is verified
+let pendingPassword: string | null = null;
+
 const SUPER_ADMIN_KEY = "reservehub_super_admins_v1";
 const REQUESTS_KEY = "reservehub_requests_v1";
 const PENDING_KEY = "reservehub_pending_v1";
@@ -192,19 +195,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (error) throw error;
   };
 
-  const signupUser: AuthContextValue["signupUser"] = async (email, name, _password) => {
+  const signupUser: AuthContextValue["signupUser"] = async (email, name, password) => {
+    pendingPassword = password || null;
     await sendOtp(email, name);
     setPendingCode({ email, code: "EMAIL", flow: "user", payload: { name } });
     return "EMAIL";
   };
 
-  const signupInstitution: AuthContextValue["signupInstitution"] = async (req, _password, name) => {
+  const signupInstitution: AuthContextValue["signupInstitution"] = async (req, password, name) => {
+    pendingPassword = password || null;
     await sendOtp(req.contactEmail, name);
     setPendingCode({ email: req.contactEmail, code: "EMAIL", flow: "institution", payload: { req, name } });
     return "EMAIL";
   };
 
-  const signupSuperAdmin: AuthContextValue["signupSuperAdmin"] = async (email, name, _password) => {
+  const signupSuperAdmin: AuthContextValue["signupSuperAdmin"] = async (email, name, password) => {
+    pendingPassword = password || null;
     if (!superAdminEmails.map(e => e.toLowerCase()).includes(email.toLowerCase())) {
       return { error: "This email is not authorized for Super Admin access." };
     }
@@ -222,6 +228,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       type: "email",
     });
     if (error || !data.session) return false;
+
+    if (pendingPassword) {
+      try { await supabase.auth.updateUser({ password: pendingPassword }); } catch { /* ignore */ }
+      pendingPassword = null;
+    }
 
     // Ensure profile is up to date with name from payload
     if (payload?.name) {
@@ -251,17 +262,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return true;
   };
 
-  // Passwordless login via OTP (real email)
-  const login: AuthContextValue["login"] = async (email, _password) => {
-    try {
-      await sendOtp(email);
-      const flow: PendingFlow = superAdminEmails.map(e => e.toLowerCase()).includes(email.toLowerCase())
-        ? "super_admin" : "user";
-      setPendingCode({ email, code: "EMAIL", flow, payload: {} });
-      return true;
-    } catch {
-      return false;
-    }
+  // Email + password login
+  const login: AuthContextValue["login"] = async (email, password) => {
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    return !error;
   };
 
   const logout: AuthContextValue["logout"] = async () => {
