@@ -26,6 +26,7 @@ import SignupInstitution from "./pages/auth/SignupInstitution";
 import SignupSuperAdmin from "./pages/auth/SignupSuperAdmin";
 import Verify from "./pages/auth/Verify";
 import Login from "./pages/auth/Login";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -59,6 +60,7 @@ const App = () => (
               <Route path="/auth/signup/super-admin" element={<SignupSuperAdmin />} />
               <Route path="/auth/verify" element={<Verify />} />
               <Route path="/auth/login" element={<Login />} />
+              <Route path="/auth/forgot-password" element={<ForgotPassword />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
               <DevRoleSwitcher />
